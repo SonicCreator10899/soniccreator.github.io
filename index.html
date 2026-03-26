@@ -73,32 +73,34 @@
     .btn-card { display: block; text-align: center; text-decoration: none; background: transparent; border: 1px solid rgba(123,47,255,0.4); color: var(--orange-light); font-family: 'Rajdhani', sans-serif; font-size: 0.9rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 0.7rem; border-radius: 6px; transition: all 0.2s; cursor: pointer; }
     .btn-card:hover, .card.featured .btn-card { background: var(--grad); border-color: transparent; color: #fff; box-shadow: 0 0 20px rgba(123,47,255,0.3); }
 
-    #showcase { background: var(--dark); }
-    .showcase-inner { max-width: 1100px; margin: 0 auto; }
-    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.2rem; }
-    .gallery-item { position: relative; border-radius: 10px; overflow: hidden; border: 1px solid rgba(123,47,255,0.1); aspect-ratio: 1; background: var(--dark3); cursor: pointer; transition: transform 0.3s, box-shadow 0.3s; }
-    .gallery-item:hover { transform: scale(1.02); box-shadow: 0 8px 30px rgba(123,47,255,0.15); }
-    .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .gallery-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%); opacity: 0; transition: opacity 0.3s; display: flex; align-items: flex-end; padding: 1rem; }
-    .gallery-item:hover .gallery-overlay { opacity: 1; }
-    .gallery-overlay span { font-family: 'Rajdhani', sans-serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--orange-light); }
-
-    #cta { background: var(--dark2); text-align: center; }
-    .cta-inner { max-width: 600px; margin: 0 auto; }
-    .cta-inner .section-title { margin-bottom: 1rem; }
-    .cta-inner p { color: var(--muted); margin-bottom: 2rem; line-height: 1.7; }
-    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .btn-secondary { display: inline-flex; align-items: center; gap: 0.5rem; background: transparent; border: 1px solid rgba(123,47,255,0.4); color: var(--orange-light); font-family: 'Rajdhani', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; padding: 0.85rem 2rem; border-radius: 6px; transition: all 0.2s; }
-    .btn-secondary:hover { background: rgba(123,47,255,0.1); border-color: var(--orange-light); }
-
-    footer { background: var(--dark); border-top: 1px solid rgba(123,47,255,0.08); padding: 2rem; text-align: center; }
-    footer p { font-family: 'Rajdhani', sans-serif; font-size: 0.8rem; letter-spacing: 2px; color: #333; text-transform: uppercase; }
-    footer span { color: var(--orange-light); }
-
+    /* --- CHATBOT STYLES --- */
+    #chat-trigger {
+      position: fixed; bottom: 20px; right: 20px;
+      width: 60px; height: 60px; border-radius: 50%;
+      background: var(--grad); color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; cursor: pointer; z-index: 1000;
+      box-shadow: 0 4px 15px rgba(123,47,255,0.4);
+      transition: transform 0.3s;
+    }
+    #chat-trigger:hover { transform: scale(1.1); }
+    
+    #chat-window {
+      position: fixed; bottom: 90px; right: 20px;
+      width: 320px; height: 400px; background: var(--dark3);
+      border: 1px solid var(--orange-light); border-radius: 15px;
+      display: none; flex-direction: column; z-index: 1000;
+      overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .chat-header { background: var(--grad); padding: 1rem; font-family: 'Orbitron'; font-size: 0.8rem; display: flex; justify-content: space-between; }
+    .chat-body { flex: 1; padding: 1rem; overflow-y: auto; font-size: 0.9rem; color: #ccc; display: flex; flex-direction: column; gap: 10px; }
+    .chat-msg { background: rgba(123,47,255,0.1); padding: 8px 12px; border-radius: 10px; align-self: flex-start; }
+    .chat-msg.user { background: var(--grad); align-self: flex-end; color: white; }
+    .chat-input-area { padding: 10px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; gap: 5px; }
+    .chat-input-area input { flex: 1; background: var(--dark); border: 1px solid #333; color: white; padding: 8px; border-radius: 5px; outline: none; }
+    .chat-send { background: var(--orange); border: none; color: white; padding: 5px 10px; border-radius: 5px; cursor: pointer; }
+    
     .glow-divider { height: 1px; background: linear-gradient(to right, transparent, rgba(123,47,255,0.3), transparent); border: none; }
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--dark); }
-    ::-webkit-scrollbar-thumb { background: rgba(123,47,255,0.4); border-radius: 99px; }
   </style>
 </head>
 <body>
@@ -116,29 +118,11 @@
 
 <section id="hero">
   <div class="hero-bg"></div>
-  <img src="https://media.discordapp.net/attachments/1410985009627533464/1486835390206836849/Sonic_Creator_Pfp_With_Gt5_Badge1.png?ex=69c6f2dd&is=69c5a15d&hm=d08e2d1647c78b346dfc1d47f2ecd1e0763697eeb80f3b524884ea8d33b968ae&=&format=webp&quality=lossless&width=952&height=953" alt="SonicCreator PFP" style="width:150px;height:150px;border-radius:50%;border:3px solid rgba(123,47,255,0.5);box-shadow:0 0 30px rgba(123,47,255,0.3);margin-bottom:1.5rem;object-fit:cover;"/>
+  <img src="https://media.discordapp.net/attachments/1410985009627533464/1486835390206836849/Sonic_Creator_Pfp_With_Gt5_Badge1.png" alt="SonicCreator PFP" style="width:150px;height:150px;border-radius:50%;border:3px solid rgba(123,47,255,0.5);box-shadow:0 0 30px rgba(123,47,255,0.3);margin-bottom:1.5rem;object-fit:cover;"/>
   <div class="hero-tag"><span class="dot"></span>Gorilla Tag Artist</div>
   <h1 class="hero-name">SonicCreator</h1>
-  <p class="hero-sub">Premium <span>Gorilla Tag PFPs</span> crafted with passion. Stand out in every lobby with a custom profile picture made just for you.</p>
+  <p class="hero-sub">Premium <span>Gorilla Tag PFPs</span> crafted with passion.</p>
   <a href="#pricing" class="btn-primary">🦍 View Pricing</a>
-</section>
-
-<hr class="glow-divider"/>
-
-<section id="about">
-  <div style="max-width:800px;margin:0 auto;text-align:center;">
-    <div class="section-label">// About Me</div>
-    <h2 class="section-title">Who Am I?</h2>
-    <p style="color:#bbb;line-height:1.9;font-size:1rem;margin-top:1rem;">
-      I'm <span style="color:#a78bfa;font-weight:600;">SonicCreator</span>, a 13-year-old Gorilla Tag Blender artist and YouTuber with nearly <span style="color:#a78bfa;font-weight:600;">800 subscribers</span>. I create custom PFPs and renders designed to stand out in-game and online. I'm constantly improving my work and working toward becoming an <span style="color:#a78bfa;font-weight:600;">AA Creator</span>.
-      <br/><br/>
-      Outside of art, I've been a fan of <span style="color:#a78bfa;font-weight:600;">Jim Henson and the Muppets</span> for most of my life, and I've been playing <span style="color:#a78bfa;font-weight:600;">tennis</span> for about 2 years.
-    </p>
-    <div style="display:flex;justify-content:center;gap:1.5rem;margin-top:2rem;flex-wrap:wrap;">
-      <img src="https://media.discordapp.net/attachments/1410985009627533464/1486833690045841429/sgmNxMN.png?ex=69c6f147&is=69c59fc7&hm=147b024a1398c2754aba39fb5ae6214d7166c2d3bba1d13ea3e981bf4b5f098a&=&format=webp&quality=lossless&width=609&height=609" alt="The Muppets" style="width:120px;height:120px;object-fit:cover;border-radius:10px;border:2px solid rgba(167,139,250,0.3);"/>
-      <img src="https://media.discordapp.net/attachments/1410985009627533464/1486833665479545043/xKuMszj.png?ex=69c6f141&is=69c59fc1&hm=194641489954e0e11894e89beb860f2e8089b49878e4e643c3e7e7c5e11cf08c&=&format=webp&quality=lossless&width=219&height=288" alt="Gorilla Tag" style="width:120px;height:120px;object-fit:cover;border-radius:10px;border:2px solid rgba(167,139,250,0.3);"/>
-    </div>
-  </div>
 </section>
 
 <hr class="glow-divider"/>
@@ -148,106 +132,95 @@
     <div class="section-header">
       <div class="section-label">// Services</div>
       <h2 class="section-title">Pick Your PFP</h2>
-      <p class="section-sub">Three tiers of quality — from quick renders to fully detailed masterpieces.</p>
     </div>
     <div class="cards-grid">
       <div class="card">
         <span class="card-icon">🎨</span>
         <div class="card-title">Basic Render</div>
         <div class="card-price">$1</div>
-        <p class="card-desc">A clean render with no background — simple, fast, and great for a quick upgrade.</p>
         <ul class="card-features">
           <li>No background render</li>
-          <li>High resolution output</li>
-          <li>1 revision included</li>
-          <li>Fast delivery</li>
+          <li>High resolution</li>
         </ul>
-        <a href="#" class="btn-card" onclick="return false;">Order Now</a>
-        <p style="margin-top:0.75rem;font-size:0.75rem;color:#666;text-align:center;letter-spacing:1px;font-family:'Rajdhani',sans-serif;">💳 Direct website payments <span style="color:#a78bfa;">coming soon</span></p>
+        <a href="https://www.paypal.com/paypalme/IgorSoulgrids/1" class="btn-card" target="_blank">Order Now</a>
       </div>
+
       <div class="card featured">
         <div class="card-badge">Popular</div>
         <span class="card-icon">⚡</span>
         <div class="card-title">Detailed PFP</div>
         <div class="card-price">$3</div>
-        <p class="card-desc">A fully styled PFP with background, effects, and custom details that make you pop.</p>
         <ul class="card-features">
-          <li>Custom background included</li>
+          <li>Custom background</li>
           <li>Effects & lighting</li>
-          <li>2 revision rounds</li>
-          <li>Quick turnaround</li>
         </ul>
-        <a href="#" class="btn-card" onclick="return false;">Order Now</a>
-        <p style="margin-top:0.75rem;font-size:0.75rem;color:#666;text-align:center;letter-spacing:1px;font-family:'Rajdhani',sans-serif;">💳 Direct website payments <span style="color:#a78bfa;">coming soon</span></p>
+        <a href="https://www.paypal.com/paypalme/IgorSoulgrids/3" class="btn-card" target="_blank">Order Now</a>
       </div>
+
       <div class="card">
         <span class="card-icon">💎</span>
         <div class="card-title">High-Quality PFP</div>
         <div class="card-price">$5</div>
-        <p class="card-desc">The full package — ultra-detailed, fully rendered with premium effects and a unique scene.</p>
         <ul class="card-features">
           <li>Ultra-detailed render</li>
           <li>Custom scene & VFX</li>
-          <li>3 revision rounds</li>
-          <li>Premium quality output</li>
         </ul>
-        <a href="#" class="btn-card" onclick="return false;">Order Now</a>
-        <p style="margin-top:0.75rem;font-size:0.75rem;color:#666;text-align:center;letter-spacing:1px;font-family:'Rajdhani',sans-serif;">💳 Direct website payments <span style="color:#a78bfa;">coming soon</span></p>
+        <a href="https://www.paypal.com/paypalme/IgorSoulgrids/5" class="btn-card" target="_blank">Order Now</a>
       </div>
     </div>
   </div>
 </section>
 
-<hr class="glow-divider"/>
-
-<section id="showcase">
-  <div class="showcase-inner">
-    <div class="section-header">
-      <div class="section-label">// Showcase</div>
-      <h2 class="section-title">Profile Pictures</h2>
-      <p class="section-sub">Hand-crafted Gorilla Tag PFPs — every single one made by me.</p>
-    </div>
-    <div class="gallery-grid" style="margin-bottom:4rem;">
-      <div class="gallery-item"><img src="https://media.discordapp.net/attachments/1410985009627533464/1486832646083576020/flare1.png?ex=69c6f04e&is=69c59ece&hm=43e9d9cc5c1358af9c433df18eec98ad2b60031020154f35e8037719e27e0d02&=&format=webp&quality=lossless&width=838&height=838" alt="PFP 1"/><div class="gallery-overlay"><span>PFP</span></div></div>
-      <div class="gallery-item"><img src="https://media.discordapp.net/attachments/1410985009627533464/1486832646603407451/greenfurry.png?ex=69c6f04e&is=69c59ece&hm=0b6b8de7bc873a7f04d7ea01eda756a2dad40687066633f4b7e2a921d795d1e4&=&format=webp&quality=lossless&width=838&height=838" alt="PFP 2"/><div class="gallery-overlay"><span>PFP</span></div></div>
-      <div class="gallery-item"><img src="https://media.discordapp.net/attachments/1410985009627533464/1486832647098339408/resbook.png?ex=69c6f04f&is=69c59ecf&hm=ba67c7fa862928ac3f0b9134adf9a584c6185736a333acd5dfcbd6ab6fcba623&=&format=webp&quality=lossless&width=838&height=838" alt="PFP 3"/><div class="gallery-overlay"><span>PFP</span></div></div>
-      <div class="gallery-item"><img src="https://media.discordapp.net/attachments/1410985009627533464/1486832647618560232/zommer123.png?ex=69c6f04f&is=69c59ecf&hm=4dd5feb89bf452986a6ca4b7da3d0c48c7257ee011386d07155173da00ca1d8d&=&format=webp&quality=lossless&width=838&height=838" alt="PFP 4"/><div class="gallery-overlay"><span>PFP</span></div></div>
-      <div class="gallery-item"><img src="https://media.discordapp.net/attachments/1410985009627533464/1486832648528593010/ctytty.png?ex=69c6f04f&is=69c59ecf&hm=9ace0edc4fd06438bfc5acd2b667c504faa8e79d819b6a8008af38d892878122&=&format=webp&quality=lossless&width=838&height=838" alt="PFP 5"/><div class="gallery-overlay"><span>PFP</span></div></div>
-    </div>
-
-    <div class="section-header">
-      <div class="section-label">// Renders</div>
-      <h2 class="section-title">Renders</h2>
-      <p class="section-sub">Clean renders crafted for any use.</p>
-    </div>
-    <div class="gallery-grid">
-      <div class="gallery-item"><img src="https://media.discordapp.net/attachments/1410985009627533464/1486833347882651668/dffdfddfdffd.png?ex=69c6f0f6&is=69c59f76&hm=8400cbe1552c0e765b465270b3599f92abf52068ac6c73fa1e3ebdcbaaec2038&=&format=webp&quality=lossless&width=838&height=838" alt="Render 1"/><div class="gallery-overlay"><span>Render</span></div></div>
-      <div class="gallery-item"><img src="https://media.discordapp.net/attachments/1410985009627533464/1486833355487182868/feetiscool.png?ex=69c6f0f7&is=69c59f77&hm=8fa77761a5cae74b3044adc88659f61a57e14240828cce357b2874b7506238fd&=&format=webp&quality=lossless&width=838&height=838" alt="Render 2"/><div class="gallery-overlay"><span>Render</span></div></div>
-      <div class="gallery-item"><img src="https://media.discordapp.net/attachments/1410985009627533464/1486833356288032868/goldddff.png?ex=69c6f0f8&is=69c59f78&hm=3ce1c10cc2bde2e3629c668ec962c1dfacc83cfaabcf163143ed9cebdcd9aea4&=&format=webp&quality=lossless&width=838&height=838" alt="Render 3"/><div class="gallery-overlay"><span>Render</span></div></div>
-      <div class="gallery-item"><img src="https://media.discordapp.net/attachments/1410985009627533464/1486833356917309520/grdc.png?ex=69c6f0f8&is=69c59f78&hm=0df9b978aced6e4edec69fbeef632aeaf41dffc52cbd42ff1a2a510e704c77e8&=&format=webp&quality=lossless&width=838&height=838" alt="Render 4"/><div class="gallery-overlay"><span>Render</span></div></div>
-      <div class="gallery-item"><img src="https://media.discordapp.net/attachments/1410985009627533464/1486833357558911117/RESRENDER.png?ex=69c6f0f8&is=69c59f78&hm=ce0b3eda168f3b7afe6da6cdc73404ea4e73020d685557b8e3a1eb9a124cabdb&=&format=webp&quality=lossless&width=838&height=838" alt="Render 5"/><div class="gallery-overlay"><span>Render</span></div></div>
-    </div>
+<div id="chat-trigger" onclick="toggleChat()">💬</div>
+<div id="chat-window">
+  <div class="chat-header">
+    <span>SonicSupport Bot</span>
+    <span style="cursor:pointer" onclick="toggleChat()">×</span>
   </div>
-</section>
-
-<hr class="glow-divider"/>
-
-<section id="cta">
-  <div class="cta-inner">
-    <div class="section-label">// Get Started</div>
-    <h2 class="section-title">Ready to Order?</h2>
-    <p>Join my Discord server and drop a message — I'll get your PFP started as soon as possible. Orders can be placed directly through Discord or soon right here on the website.</p>
-    <div class="cta-buttons">
-      <a href="https://discord.gg/NsA8xva5H9" class="btn-primary" target="_blank">🎮 Join Discord</a>
-      <a href="#pricing" class="btn-secondary">View Pricing</a>
-    </div>
+  <div class="chat-body" id="chat-body">
+    <div class="chat-msg">Yo! I'm the SonicBot. Need help with a PFP?</div>
   </div>
-</section>
+  <div class="chat-input-area">
+    <input type="text" id="chat-input" placeholder="Ask a question...">
+    <button class="chat-send" onclick="sendMsg()">Send</button>
+  </div>
+</div>
+
+<script>
+  // Updated variable to point to your PayPal profile
+  const myPayPal = "https://www.paypal.com/paypalme/IgorSoulgrids"; 
+
+  function toggleChat() {
+    const win = document.getElementById('chat-window');
+    win.style.display = win.style.display === 'flex' ? 'none' : 'flex';
+  }
+
+  function sendMsg() {
+    const input = document.getElementById('chat-input');
+    const body = document.getElementById('chat-body');
+    if(!input.value) return;
+
+    const userMsg = document.createElement('div');
+    userMsg.className = 'chat-msg user';
+    userMsg.innerText = input.value;
+    body.appendChild(userMsg);
+
+    setTimeout(() => {
+      const botMsg = document.createElement('div');
+      botMsg.className = 'chat-msg';
+      botMsg.innerText = "Thanks! For faster support, join our Discord. SonicCreator will get back to you soon!";
+      body.appendChild(botMsg);
+      body.scrollTop = body.scrollHeight;
+    }, 1000);
+
+    input.value = '';
+    body.scrollTop = body.scrollHeight;
+  }
+</script>
 
 <footer>
   <p>© 2026 <span>SonicCreator</span> — All Rights Reserved</p>
 </footer>
-  
 
 </body>
 </html>
