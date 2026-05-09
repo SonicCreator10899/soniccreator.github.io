@@ -32,83 +32,435 @@
       backdrop-filter: blur(14px);
       border-bottom: 1px solid rgba(123,47,255,0.15);
     }
-    .nav-logo { font-family: 'Orbitron', sans-serif; font-size: 1.1rem; font-weight: 900; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: 2px; }
-    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
-    .nav-links a { text-decoration: none; color: var(--muted); font-family: 'Rajdhani', sans-serif; font-size: 0.95rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.2s, border-color 0.2s, box-shadow 0.2s; }
+
+    .nav-logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 900;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
     .nav-links a:hover { color: var(--orange-light); }
 
-    .nav-merch-cta {
-      color: #fff !important;
-      padding: 0.65rem 1rem;
-      border: 1px solid rgba(167,139,250,0.5);
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 40%, rgba(123,47,255,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 80% 70%, rgba(41,121,255,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-merch-bubble {
+      position: absolute;
+      top: 18%;
+      right: clamp(1rem, 6vw, 6rem);
+      z-index: 5;
+      width: clamp(130px, 16vw, 210px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      text-decoration: none;
+      transform-style: preserve-3d;
+      transform: perspective(900px) rotateX(var(--bubble-y, 0deg)) rotateY(var(--bubble-x, 0deg));
+      animation: bubbleIn 1.1s ease forwards, bubbleFloat 4.5s ease-in-out infinite 1.1s;
+    }
+
+    .hero-merch-bubble::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 30% 22%, rgba(255,255,255,0.55), transparent 22%),
+        radial-gradient(circle at 62% 68%, rgba(123,47,255,0.38), transparent 42%),
+        radial-gradient(circle at 40% 60%, rgba(41,121,255,0.42), transparent 48%),
+        rgba(10,10,15,0.62);
+      border: 1px solid rgba(255,255,255,0.22);
+      backdrop-filter: blur(16px) saturate(1.5);
+      box-shadow:
+        inset 0 0 28px rgba(255,255,255,0.14),
+        inset -18px -20px 36px rgba(123,47,255,0.18),
+        0 0 42px rgba(41,121,255,0.28),
+        0 24px 60px rgba(0,0,0,0.42);
+    }
+
+    .hero-merch-bubble::after {
+      content: "";
+      position: absolute;
+      inset: 12%;
+      border-radius: 50%;
+      border: 1px solid rgba(167,139,250,0.42);
+      box-shadow: 0 0 28px rgba(123,47,255,0.32);
+      transform: translateZ(22px) rotate(-18deg);
+    }
+
+    .hero-merch-bubble img {
+      position: relative;
+      z-index: 2;
+      width: 66%;
+      height: 66%;
+      object-fit: contain;
+      border-radius: 50%;
+      filter: drop-shadow(0 0 18px rgba(41,121,255,0.45));
+      transform: translateZ(42px);
+    }
+
+    .bubble-text {
+      position: absolute;
+      bottom: -0.55rem;
+      z-index: 3;
+      padding: 0.45rem 0.75rem;
       border-radius: 999px;
-      background: linear-gradient(135deg, rgba(123,47,255,0.28), rgba(41,121,255,0.22));
-      box-shadow: 0 0 22px rgba(123,47,255,0.22);
+      background: linear-gradient(135deg, #7b2fff, #2979ff);
+      color: #fff;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      box-shadow: 0 0 24px rgba(123,47,255,0.38);
     }
 
-    .nav-merch-cta:hover {
-      color: #fff !important;
-      border-color: rgba(167,139,250,0.9);
-      box-shadow: 0 0 34px rgba(123,47,255,0.38);
+    @keyframes bubbleIn {
+      from {
+        opacity: 0;
+        transform: perspective(900px) translateY(26px) scale(0.72) rotateX(18deg);
+      }
+      to {
+        opacity: 1;
+        transform: perspective(900px) translateY(0) scale(1);
+      }
     }
 
-    #hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem; position: relative; overflow: hidden; }
-    .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(123,47,255,0.12) 0%, transparent 70%), radial-gradient(ellipse 40% 30% at 80% 70%, rgba(41,121,255,0.08) 0%, transparent 60%); pointer-events: none; }
-    .hero-tag { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(123,47,255,0.08); border: 1px solid rgba(123,47,255,0.25); border-radius: 99px; padding: 0.4rem 1.1rem; font-family: 'Rajdhani', sans-serif; font-size: 0.85rem; font-weight: 600; letter-spacing: 2px; color: var(--orange-light); text-transform: uppercase; margin-bottom: 1.5rem; }
-    .hero-tag .dot { width: 6px; height: 6px; background: var(--orange); border-radius: 50%; animation: pulse 1.8s infinite; }
-    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.7); } }
-    .hero-name { font-family: 'Orbitron', sans-serif; font-size: clamp(2.8rem, 8vw, 6rem); font-weight: 900; line-height: 1; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem; letter-spacing: 2px; }
-    .hero-sub { font-size: 1.05rem; color: var(--muted); max-width: 480px; line-height: 1.7; margin-bottom: 2.5rem; }
+    @keyframes bubbleFloat {
+      0%, 100% { translate: 0 0; }
+      50% { translate: 0 -16px; }
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(123,47,255,0.08);
+      border: 1px solid rgba(123,47,255,0.25);
+      border-radius: 99px;
+      padding: 0.4rem 1.1rem;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: var(--orange-light);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-tag .dot {
+      width: 6px;
+      height: 6px;
+      background: var(--orange);
+      border-radius: 50%;
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    .hero-name {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2.8rem, 8vw, 6rem);
+      font-weight: 900;
+      line-height: 1;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+      letter-spacing: 2px;
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 480px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+
     .hero-sub span { color: var(--orange-light); font-weight: 500; }
-    .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--grad); color: #fff; font-family: 'Rajdhani', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; padding: 0.85rem 2.2rem; border-radius: 6px; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 0 24px rgba(123,47,255,0.25); }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(123,47,255,0.4); }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--grad);
+      color: #fff;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.85rem 2.2rem;
+      border-radius: 6px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 24px rgba(123,47,255,0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 40px rgba(123,47,255,0.4);
+    }
 
     section { padding: 6rem 2rem; }
-    .section-label { font-family: 'Rajdhani', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--orange-light); margin-bottom: 0.6rem; }
-    .section-title { font-family: 'Orbitron', sans-serif; font-size: clamp(1.5rem, 4vw, 2.4rem); font-weight: 700; margin-bottom: 0.75rem; }
-    .section-sub { color: var(--muted); font-size: 0.95rem; max-width: 500px; }
+
+    .section-label {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--orange-light);
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(1.5rem, 4vw, 2.4rem);
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-sub {
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 500px;
+    }
+
     .section-header { margin-bottom: 3.5rem; }
 
     #pricing { background: var(--dark2); }
     .pricing-inner { max-width: 1100px; margin: 0 auto; }
     .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-    .card { background: var(--dark3); border: 1px solid rgba(123,47,255,0.1); border-radius: 12px; padding: 2rem; position: relative; transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s; overflow: hidden; }
-    .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--grad); opacity: 0; transition: opacity 0.3s; }
-    .card:hover { border-color: rgba(123,47,255,0.35); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(123,47,255,0.1); }
+
+    .card {
+      background: var(--dark3);
+      border: 1px solid rgba(123,47,255,0.1);
+      border-radius: 12px;
+      padding: 2rem;
+      position: relative;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--grad);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .card:hover {
+      border-color: rgba(123,47,255,0.35);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(123,47,255,0.1);
+    }
+
     .card:hover::before { opacity: 1; }
     .card.featured { border-color: rgba(123,47,255,0.4); box-shadow: 0 0 30px rgba(123,47,255,0.1); }
     .card.featured::before { opacity: 1; }
-    .card-badge { display: inline-block; background: var(--grad); color: #fff; font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 0.25rem 0.75rem; border-radius: 99px; margin-bottom: 1rem; }
+
+    .card-badge {
+      display: inline-block;
+      background: var(--grad);
+      color: #fff;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.25rem 0.75rem;
+      border-radius: 99px;
+      margin-bottom: 1rem;
+    }
+
     .card-icon { font-size: 2rem; margin-bottom: 0.75rem; display: block; }
     .card-title { font-family: 'Rajdhani', sans-serif; font-size: 1.2rem; font-weight: 700; letter-spacing: 1px; margin-bottom: 0.25rem; }
     .card-price { font-family: 'Orbitron', sans-serif; font-size: 2rem; font-weight: 900; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem; }
     .card-desc { color: var(--muted); font-size: 0.88rem; line-height: 1.6; margin-bottom: 1.5rem; }
     .card-features { list-style: none; margin-bottom: 1.8rem; }
-    .card-features li { font-size: 0.88rem; color: #ccc; padding: 0.35rem 0; display: flex; align-items: center; gap: 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.04); }
-    .card-features li::before { content: '✦'; color: var(--orange-light); font-size: 0.6rem; flex-shrink: 0; }
-    .btn-card { display: block; text-align: center; text-decoration: none; background: transparent; border: 1px solid rgba(123,47,255,0.4); color: var(--orange-light); font-family: 'Rajdhani', sans-serif; font-size: 0.9rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 0.7rem; border-radius: 6px; transition: all 0.2s; cursor: pointer; }
-    .btn-card:hover, .card.featured .btn-card { background: var(--grad); border-color: transparent; color: #fff; box-shadow: 0 0 20px rgba(123,47,255,0.3); }
+
+    .card-features li {
+      font-size: 0.88rem;
+      color: #ccc;
+      padding: 0.35rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .card-features li::before {
+      content: '✦';
+      color: var(--orange-light);
+      font-size: 0.6rem;
+      flex-shrink: 0;
+    }
+
+    .btn-card {
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      background: transparent;
+      border: 1px solid rgba(123,47,255,0.4);
+      color: var(--orange-light);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.7rem;
+      border-radius: 6px;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .btn-card:hover, .card.featured .btn-card {
+      background: var(--grad);
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 0 20px rgba(123,47,255,0.3);
+    }
 
     #showcase { background: var(--dark); }
     .showcase-inner { max-width: 1100px; margin: 0 auto; }
     .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.2rem; }
-    .gallery-item { position: relative; border-radius: 10px; overflow: hidden; border: 1px solid rgba(123,47,255,0.1); aspect-ratio: 1; background: var(--dark3); cursor: pointer; transition: transform 0.3s, box-shadow 0.3s; }
-    .gallery-item:hover { transform: scale(1.02); box-shadow: 0 8px 30px rgba(123,47,255,0.15); }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(123,47,255,0.1);
+      aspect-ratio: 1;
+      background: var(--dark3);
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 30px rgba(123,47,255,0.15);
+    }
+
     .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .gallery-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%); opacity: 0; transition: opacity 0.3s; display: flex; align-items: flex-end; padding: 1rem; }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex;
+      align-items: flex-end;
+      padding: 1rem;
+    }
+
     .gallery-item:hover .gallery-overlay { opacity: 1; }
-    .gallery-overlay span { font-family: 'Rajdhani', sans-serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--orange-light); }
+
+    .gallery-overlay span {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--orange-light);
+    }
 
     #cta { background: var(--dark2); text-align: center; }
     .cta-inner { max-width: 600px; margin: 0 auto; }
     .cta-inner .section-title { margin-bottom: 1rem; }
     .cta-inner p { color: var(--muted); margin-bottom: 2rem; line-height: 1.7; }
     .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .btn-secondary { display: inline-flex; align-items: center; gap: 0.5rem; background: transparent; border: 1px solid rgba(123,47,255,0.4); color: var(--orange-light); font-family: 'Rajdhani', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; padding: 0.85rem 2rem; border-radius: 6px; transition: all 0.2s; }
-    .btn-secondary:hover { background: rgba(123,47,255,0.1); border-color: var(--orange-light); }
 
-    footer { background: var(--dark); border-top: 1px solid rgba(123,47,255,0.08); padding: 2rem; text-align: center; }
-    footer p { font-family: 'Rajdhani', sans-serif; font-size: 0.8rem; letter-spacing: 2px; color: #333; text-transform: uppercase; }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      border: 1px solid rgba(123,47,255,0.4);
+      color: var(--orange-light);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.85rem 2rem;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(123,47,255,0.1);
+      border-color: var(--orange-light);
+    }
+
+    footer {
+      background: var(--dark);
+      border-top: 1px solid rgba(123,47,255,0.08);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    footer p {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      color: #333;
+      text-transform: uppercase;
+    }
+
     footer span { color: var(--orange-light); }
 
     .review-card {
@@ -126,8 +478,18 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .review-card:hover { border-color: rgba(123,47,255,0.4); box-shadow: 0 8px 30px rgba(123,47,255,0.1); transform: translateY(-3px); transition: all 0.3s; }
-    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    .review-card:hover {
+      border-color: rgba(123,47,255,0.4);
+      box-shadow: 0 8px 30px rgba(123,47,255,0.1);
+      transform: translateY(-3px);
+      transition: all 0.3s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: var(--dark); }
     ::-webkit-scrollbar-thumb { background: rgba(123,47,255,0.4); border-radius: 99px; }
@@ -136,7 +498,20 @@
       nav { padding: 1rem; }
       .nav-links { gap: 0.8rem; overflow-x: auto; }
       .nav-links a { font-size: 0.8rem; white-space: nowrap; }
-      .nav-merch-cta { padding: 0.55rem 0.8rem; }
+    }
+
+    @media (max-width: 760px) {
+      .hero-merch-bubble {
+        top: auto;
+        right: 50%;
+        bottom: 2.2rem;
+        width: 128px;
+        transform: translateX(50%);
+      }
+
+      .hero-sub {
+        margin-bottom: 8rem;
+      }
     }
   </style>
 </head>
@@ -152,12 +527,18 @@
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#showcase">Showcase</a></li>
     <li><a href="#merch">Merch</a></li>
-    <li><a class="nav-merch-cta" href="https://soniccreator10899.github.io/soniccreator.github.io/glass-merch/">Merch Drop</a></li>
+    <li><a href="#cta">Order</a></li>
   </ul>
 </nav>
 
 <section id="hero">
   <div class="hero-bg"></div>
+
+  <a class="hero-merch-bubble" href="https://soniccreator10899.github.io/soniccreator.github.io/glass-merch/" aria-label="Open SonicCreator merch drop preview">
+    <img src="https://soniccreator10899.github.io/soniccreator.github.io/glass-merch/Logo.png" alt="">
+    <span class="bubble-text">Dropping Soon</span>
+  </a>
+
   <img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/Sonic_Creator_AAC_PFP_1.png" alt="SonicCreator PFP" style="width:150px;height:150px;border-radius:50%;border:3px solid rgba(123,47,255,0.5);box-shadow:0 0 30px rgba(123,47,255,0.3);margin-bottom:1.5rem;object-fit:cover;"/>
   <div class="hero-tag"><span class="dot"></span>Gorilla Tag Artist</div>
   <h1 class="hero-name">SonicCreator</h1>
@@ -167,7 +548,6 @@
 
 <hr class="glow-divider"/>
 
-<!-- REVIEWS -->
 <section id="reviews">
   <div style="max-width:1100px;margin:0 auto;text-align:center;">
     <div class="section-label">// Reviews</div>
@@ -181,21 +561,25 @@
         <p style="color:#ccc;font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">"K I like the background its pretty good I like the pose and the style everything's good in general."</p>
         <div style="font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:1px;color:#666;">— BEANIE</div>
       </div>
+
       <div class="review-card" style="animation-delay:0.25s;text-align:left;">
         <div style="color:#a78bfa;font-size:1.1rem;margin-bottom:0.5rem;">5/5</div>
         <p style="color:#ccc;font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">"I found SonicCreator and told him to make a PFP for me. After an hour or so, the masterpiece was done. I highly recommend his PFPs."</p>
         <div style="font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:1px;color:#666;">— GamradGT</div>
       </div>
+
       <div class="review-card" style="animation-delay:0.4s;text-align:left;">
         <div style="color:#a78bfa;font-size:1.1rem;margin-bottom:0.5rem;">4.3/5</div>
         <p style="color:#ccc;font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">"Solid quality. Good speed, delivery time was quick and got done pretty quick."</p>
         <div style="font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:1px;color:#666;">— sys</div>
       </div>
+
       <div class="review-card" style="animation-delay:0.55s;text-align:left;">
         <div style="color:#a78bfa;font-size:1.1rem;margin-bottom:0.5rem;">10/10</div>
         <p style="color:#ccc;font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">"SonicCreator's PFPs are really cool. His signature background and quick time were very pleasing."</p>
         <div style="font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:1px;color:#666;">— Kiki Fire</div>
       </div>
+
       <div class="review-card" style="animation-delay:0.7s;text-align:left;">
         <div style="color:#a78bfa;font-size:1.1rem;margin-bottom:0.5rem;">10/10</div>
         <p style="color:#ccc;font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">"SonicCreator is so good at making PFPs. He is the nicest guy to get them from."</p>
@@ -244,6 +628,7 @@
       <h2 class="section-title">Pick Your PFP</h2>
       <p class="section-sub">Three tiers of quality, from quick renders to fully detailed masterpieces.</p>
     </div>
+
     <div class="cards-grid">
       <div class="card">
         <span class="card-icon">Art</span>
@@ -258,6 +643,7 @@
         </ul>
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSds4oP1m7NOoe7Y0D9ykqPRLjW_knIzR5lKDz8z10GEh5ne-w/viewform?usp=header" class="btn-card" target="_blank">Order Now</a>
       </div>
+
       <div class="card featured">
         <div class="card-badge">Popular</div>
         <span class="card-icon">HQ</span>
@@ -272,6 +658,7 @@
         </ul>
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSds4oP1m7NOoe7Y0D9ykqPRLjW_knIzR5lKDz8z10GEh5ne-w/viewform?usp=header" class="btn-card" target="_blank">Order Now</a>
       </div>
+
       <div class="card">
         <span class="card-icon">FX</span>
         <div class="card-title">Detailed PFP</div>
@@ -298,6 +685,7 @@
       <h2 class="section-title">Profile Pictures</h2>
       <p class="section-sub">Hand-crafted Gorilla Tag PFPs, every single one made by me.</p>
     </div>
+
     <div class="gallery-grid" style="margin-bottom:4rem;">
       <div class="gallery-item"><img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/M1dna1.png" alt="M1dna PFP"/><div class="gallery-overlay"><span>Made for M1dna</span></div></div>
       <div class="gallery-item"><img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/flare1.png" alt="PFP 1"/><div class="gallery-overlay"><span>PFP</span></div></div>
@@ -312,6 +700,7 @@
       <h2 class="section-title">Renders</h2>
       <p class="section-sub">Clean renders crafted with detail and style.</p>
     </div>
+
     <div class="gallery-grid">
       <div class="gallery-item"><img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/RESRENDER.png" alt="Render 1"/><div class="gallery-overlay"><span>Render</span></div></div>
       <div class="gallery-item"><img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/Untitled%20(2).png" alt="Render 2"/><div class="gallery-overlay"><span>Render</span></div></div>
@@ -368,7 +757,30 @@
   <p>© 2026 <span>SonicCreator</span> — All Rights Reserved</p>
 </footer>
 
-<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="21241ec2-660e-4e51-9329-ea7b06058880";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d=d;document.getElementsByTagName("head")[0].appendChild(s);})();</script>
+<script>
+  const merchBubble = document.querySelector('.hero-merch-bubble');
+
+  if (merchBubble) {
+    window.addEventListener('pointermove', (event) => {
+      const x = (event.clientX / window.innerWidth - 0.5) * 18;
+      const y = (event.clientY / window.innerHeight - 0.5) * -18;
+      merchBubble.style.setProperty('--bubble-x', `${x}deg`);
+      merchBubble.style.setProperty('--bubble-y', `${y}deg`);
+    });
+  }
+</script>
+
+<script type="text/javascript">
+  window.$crisp=[];
+  window.CRISP_WEBSITE_ID="21241ec2-660e-4e51-9329-ea7b06058880";
+  (function(){
+    d=document;
+    s=d.createElement("script");
+    s.src="https://client.crisp.chat/l.js";
+    s.async=1;
+    d.getElementsByTagName("head")[0].appendChild(s);
+  })();
+</script>
 
 </body>
 </html>
