@@ -105,9 +105,17 @@
       transform: translateY(30px);
       animation: popIn 0.6s ease forwards;
     }
-    @keyframes popIn {
-      to { opacity: 1; transform: translateY(0); }
-    .review-card:hover { border-color: rgba(123,47,255,0.4); box-shadow: 0 8px 30px rgba(123,47,255,0.1); transform: translateY(-3px); transition: all 0.3s; }
+  @keyframes popIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.review-card:hover {
+  border-color: rgba(123,47,255,0.4);
+  box-shadow: 0 8px 30px rgba(123,47,255,0.1);
+  transform: translateY(-3px);
+  transition: all 0.3s;
+}
+
     @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
     .merch-float {
   position: fixed;
@@ -404,7 +412,7 @@
 
 <hr class="glow-divider"/>
 
-<!-- CTA -->
+<!-- MERCH -->
 <section id="merch" style="background:var(--dark2);padding:6rem 1rem;">
   <div style="max-width:1100px;margin:0 auto;">
     <div class="section-header" style="text-align:center;margin-bottom:2rem;">
