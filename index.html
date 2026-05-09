@@ -1,3 +1,6 @@
+Yes. Replace your entire `index.html` with this:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,9 +35,24 @@
       border-bottom: 1px solid rgba(123,47,255,0.15);
     }
     .nav-logo { font-family: 'Orbitron', sans-serif; font-size: 1.1rem; font-weight: 900; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: 2px; }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { text-decoration: none; color: var(--muted); font-family: 'Rajdhani', sans-serif; font-size: 0.95rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a { text-decoration: none; color: var(--muted); font-family: 'Rajdhani', sans-serif; font-size: 0.95rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.2s, border-color 0.2s, box-shadow 0.2s; }
     .nav-links a:hover { color: var(--orange-light); }
+
+    .nav-merch-cta {
+      color: #fff !important;
+      padding: 0.65rem 1rem;
+      border: 1px solid rgba(167,139,250,0.5);
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(123,47,255,0.28), rgba(41,121,255,0.22));
+      box-shadow: 0 0 22px rgba(123,47,255,0.22);
+    }
+
+    .nav-merch-cta:hover {
+      color: #fff !important;
+      border-color: rgba(167,139,250,0.9);
+      box-shadow: 0 0 34px rgba(123,47,255,0.38);
+    }
 
     #hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem; position: relative; overflow: hidden; }
     .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(123,47,255,0.12) 0%, transparent 70%), radial-gradient(ellipse 40% 30% at 80% 70%, rgba(41,121,255,0.08) 0%, transparent 60%); pointer-events: none; }
@@ -105,103 +123,23 @@
       transform: translateY(30px);
       animation: popIn 0.6s ease forwards;
     }
-  @keyframes popIn {
-  to { opacity: 1; transform: translateY(0); }
-}
 
-.review-card:hover {
-  border-color: rgba(123,47,255,0.4);
-  box-shadow: 0 8px 30px rgba(123,47,255,0.1);
-  transform: translateY(-3px);
-  transition: all 0.3s;
-}
+    @keyframes popIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
 
+    .review-card:hover { border-color: rgba(123,47,255,0.4); box-shadow: 0 8px 30px rgba(123,47,255,0.1); transform: translateY(-3px); transition: all 0.3s; }
     @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-    .merch-float {
-  position: fixed;
-  top: 5.2rem;
-  right: 1.2rem;
-  z-index: 120;
-  width: 230px;
-  border: 1px solid rgba(123,47,255,0.35);
-  border-radius: 14px;
-  background: rgba(10,10,15,0.78);
-  backdrop-filter: blur(18px);
-  box-shadow: 0 0 30px rgba(123,47,255,0.22);
-  padding: 0.75rem;
-  text-decoration: none;
-  color: #fff;
-  overflow: hidden;
-}
-
-.merch-float::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 80% 20%, rgba(41,121,255,0.28), transparent 45%),
-              radial-gradient(circle at 20% 80%, rgba(123,47,255,0.24), transparent 45%);
-  pointer-events: none;
-}
-
-.merch-float-inner {
-  position: relative;
-  display: grid;
-  grid-template-columns: 54px 1fr;
-  gap: 0.75rem;
-  align-items: center;
-}
-
-.merch-float img {
-  width: 54px;
-  height: 54px;
-  border-radius: 10px;
-  object-fit: cover;
-  border: 1px solid rgba(255,255,255,0.12);
-}
-
-.merch-float-kicker {
-  font-family: 'Rajdhani', sans-serif;
-  color: var(--orange-light);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-.merch-float-title {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 900;
-  margin-top: 0.15rem;
-}
-
-.merch-float-cta {
-  font-family: 'Rajdhani', sans-serif;
-  color: #ccc;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin-top: 0.2rem;
-}
-
-.merch-float:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 45px rgba(123,47,255,0.35);
-}
-
-@media (max-width: 760px) {
-  .merch-float {
-    top: auto;
-    right: 0.75rem;
-    bottom: 0.75rem;
-    width: calc(100% - 1.5rem);
-  }
-}
-
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: var(--dark); }
     ::-webkit-scrollbar-thumb { background: rgba(123,47,255,0.4); border-radius: 99px; }
+
+    @media (max-width: 900px) {
+      nav { padding: 1rem; }
+      .nav-links { gap: 0.8rem; overflow-x: auto; }
+      .nav-links a { font-size: 0.8rem; white-space: nowrap; }
+      .nav-merch-cta { padding: 0.55rem 0.8rem; }
+    }
   </style>
 </head>
 <body>
@@ -216,20 +154,9 @@
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#showcase">Showcase</a></li>
     <li><a href="#merch">Merch</a></li>
-    <li><a href="#cta">Order</a></li>
+    <li><a class="nav-merch-cta" href="https://soniccreator10899.github.io/soniccreator.github.io/glass-merch/">Merch Drop</a></li>
   </ul>
 </nav>
-  <a class="merch-float" href="https://soniccreator10899.github.io/soniccreator.github.io/glass-merch/">
-  <div class="merch-float-inner">
-    <img src="https://soniccreator10899.github.io/soniccreator.github.io/glass-merch/Logo.png" alt="SonicCreator merch preview">
-    <div>
-      <div class="merch-float-kicker">Merch</div>
-      <div class="merch-float-title">Dropping Soon</div>
-      <div class="merch-float-cta">Open preview →</div>
-    </div>
-  </div>
-</a>
-
 
 <section id="hero">
   <div class="hero-bg"></div>
@@ -237,10 +164,8 @@
   <div class="hero-tag"><span class="dot"></span>Gorilla Tag Artist</div>
   <h1 class="hero-name">SonicCreator</h1>
   <p class="hero-sub">Premium <span>Gorilla Tag PFPs</span> crafted with passion. Stand out in every lobby with a custom profile picture made just for you.</p>
-  <a href="#pricing" class="btn-primary">🦍 View Pricing</a>
+  <a href="#pricing" class="btn-primary">View Pricing</a>
 </section>
-
-<hr class="glow-divider"/>
 
 <hr class="glow-divider"/>
 
@@ -250,51 +175,48 @@
     <div class="section-label">// Reviews</div>
     <h2 class="section-title">What Customers Say</h2>
     <p class="section-sub" style="margin:0 auto 2.5rem;">Real feedback from real customers.</p>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSe9sorXB4I7f_Y_Qes2yYAWfNRXGzg2b-URkqfgHSZ8Bya65g/viewform?usp=publish-editor" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;background:linear-gradient(135deg,#7b2fff,#2979ff);color:#fff;font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none;padding:0.85rem 2rem;border-radius:6px;margin-bottom:3rem;box-shadow:0 0 24px rgba(123,47,255,0.25);transition:transform 0.2s,box-shadow 0.2s;">✍️ Write a Review</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSe9sorXB4I7f_Y_Qes2yYAWfNRXGzg2b-URkqfgHSZ8Bya65g/viewform?usp=publish-editor" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;background:linear-gradient(135deg,#7b2fff,#2979ff);color:#fff;font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none;padding:0.85rem 2rem;border-radius:6px;margin-bottom:3rem;box-shadow:0 0 24px rgba(123,47,255,0.25);transition:transform 0.2s,box-shadow 0.2s;">Write a Review</a>
 
-    <!-- Existing Reviews -->
     <div id="reviews-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;margin-bottom:3rem;">
       <div class="review-card" style="animation-delay:0.1s;text-align:left;">
-        <div style="color:#a78bfa;font-size:1.1rem;margin-bottom:0.5rem;">⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐</div>
-        <p style="color:#ccc;font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">"K I like the background its pretty good I like the pose and the style everything's good in general 👍 10/10"</p>
+        <div style="color:#a78bfa;font-size:1.1rem;margin-bottom:0.5rem;">10/10</div>
+        <p style="color:#ccc;font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">"K I like the background its pretty good I like the pose and the style everything's good in general."</p>
         <div style="font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:1px;color:#666;">— BEANIE</div>
       </div>
       <div class="review-card" style="animation-delay:0.25s;text-align:left;">
-        <div style="color:#a78bfa;font-size:1.1rem;margin-bottom:0.5rem;">⭐⭐⭐⭐⭐</div>
-        <p style="color:#ccc;font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">"I've had bad pfps ALL my life, so one day I decided to go looking for one. I found the owner of my current pfp (SonicCreator) and told him to make a pfp for me. After an hour or so, the master piece was done, I HIGHLY recommend to buy his pfps."</p>
+        <div style="color:#a78bfa;font-size:1.1rem;margin-bottom:0.5rem;">5/5</div>
+        <p style="color:#ccc;font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">"I found SonicCreator and told him to make a PFP for me. After an hour or so, the masterpiece was done. I highly recommend his PFPs."</p>
         <div style="font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:1px;color:#666;">— GamradGT</div>
       </div>
       <div class="review-card" style="animation-delay:0.4s;text-align:left;">
-        <div style="color:#a78bfa;font-size:1.1rem;margin-bottom:0.5rem;">⭐⭐⭐⭐</div>
-        <p style="color:#ccc;font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">"Solid, 8/10 on quality. Good speed, delivery time was quick and got done pretty quick. Could get a better rig though. Either than that, 4.3/5."</p>
+        <div style="color:#a78bfa;font-size:1.1rem;margin-bottom:0.5rem;">4.3/5</div>
+        <p style="color:#ccc;font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">"Solid quality. Good speed, delivery time was quick and got done pretty quick."</p>
         <div style="font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:1px;color:#666;">— sys</div>
       </div>
       <div class="review-card" style="animation-delay:0.55s;text-align:left;">
-        <div style="color:#a78bfa;font-size:1.1rem;margin-bottom:0.5rem;">⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐</div>
-        <p style="color:#ccc;font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">"Sonics PFPs are really cool. His signature background and the quick time he took to make the PFP was very pleasing because some people say they will make you something but never do. This is not what SonicCreator does. I would rate his art 10/10."</p>
+        <div style="color:#a78bfa;font-size:1.1rem;margin-bottom:0.5rem;">10/10</div>
+        <p style="color:#ccc;font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">"SonicCreator's PFPs are really cool. His signature background and quick time were very pleasing."</p>
         <div style="font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:1px;color:#666;">— Kiki Fire</div>
       </div>
       <div class="review-card" style="animation-delay:0.7s;text-align:left;">
-        <div style="color:#a78bfa;font-size:1.1rem;margin-bottom:0.5rem;">⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐</div>
-        <p style="color:#ccc;font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">"Dude SonicCreator is so good at making PFPs. He is the nicest guy to get them from. I recommend him a lot for being an AA. And if you want a PFP order one, he's got you!"</p>
+        <div style="color:#a78bfa;font-size:1.1rem;margin-bottom:0.5rem;">10/10</div>
+        <p style="color:#ccc;font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">"SonicCreator is so good at making PFPs. He is the nicest guy to get them from."</p>
         <div style="font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:1px;color:#666;">— Mr. Aidan</div>
       </div>
     </div>
-
   </div>
 </section>
 
 <hr class="glow-divider"/>
 
-<!-- WHY I MADE THIS -->
 <section id="why" style="background:var(--dark2);text-align:center;">
   <div style="max-width:800px;margin:0 auto;">
     <div class="section-label">// The Mission</div>
     <h2 class="section-title">Why I Built This</h2>
     <p style="color:#bbb;line-height:1.9;font-size:1rem;margin-top:1rem;">
-      I created this website to give people a simple, clean place to browse and buy my <span style="color:#a78bfa;font-weight:600;">custom Gorilla Tag PFPs</span>. No hassle, no searching through Discord — just come here, pick what you want, and order.
+      I created this website to give people a simple, clean place to browse and buy my <span style="color:#a78bfa;font-weight:600;">custom Gorilla Tag PFPs</span>. No hassle, no searching through Discord, just come here, pick what you want, and order.
       <br/><br/>
-      But this is just the beginning. Down the road I'm planning to bring <span style="color:#a78bfa;font-weight:600;">merch, new art styles, and more</span> — all in one place. This site grows as I grow as an artist.
+      But this is just the beginning. Down the road I'm planning to bring <span style="color:#a78bfa;font-weight:600;">merch, new art styles, and more</span>, all in one place. This site grows as I grow as an artist.
     </p>
   </div>
 </section>
@@ -306,9 +228,7 @@
     <div class="section-label">// About Me</div>
     <h2 class="section-title">Who Am I?</h2>
     <p style="color:#bbb;line-height:1.9;font-size:1rem;margin-top:1rem;">
-      I'm <span style="color:#a78bfa;font-weight:600;">SonicCreator</span>, a 14-year-old Gorilla Tag Blender artist and YouTuber with almost <span style="color:#a78bfa;font-weight:600;">2,000 subscribers</span>. I create custom PFPs and renders designed to stand out in-game and online. I've been constantly improving my work and I'm proud to say I'm now an <span style="color:#a78bfa;font-weight:600;">AA Creator</span>.
-      <br/><br/>
-      Outside of art, I've been a fan of <span style="color:#a78bfa;font-weight:600;">Jim Henson and the Muppets</span> for most of my life, and I've been playing <span style="color:#a78bfa;font-weight:600;">tennis</span> for about 2 years.
+      I'm <span style="color:#a78bfa;font-weight:600;">SonicCreator</span>, a 14-year-old Gorilla Tag Blender artist and YouTuber with almost <span style="color:#a78bfa;font-weight:600;">2,000 subscribers</span>. I create custom PFPs and renders designed to stand out in-game and online.
     </p>
     <div style="display:flex;justify-content:center;gap:1.5rem;margin-top:2rem;flex-wrap:wrap;">
       <img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/Muppets_cast.jpg" alt="The Muppets" style="width:120px;height:120px;object-fit:cover;border-radius:10px;border:2px solid rgba(167,139,250,0.3);"/>
@@ -324,14 +244,14 @@
     <div class="section-header">
       <div class="section-label">// Services</div>
       <h2 class="section-title">Pick Your PFP</h2>
-      <p class="section-sub">Three tiers of quality — from quick renders to fully detailed masterpieces.</p>
+      <p class="section-sub">Three tiers of quality, from quick renders to fully detailed masterpieces.</p>
     </div>
     <div class="cards-grid">
       <div class="card">
-        <span class="card-icon">🎨</span>
+        <span class="card-icon">Art</span>
         <div class="card-title">Basic Render</div>
         <div class="card-price">$1</div>
-        <p class="card-desc">A clean render with no background — simple, fast, and great for a quick upgrade.</p>
+        <p class="card-desc">A clean render with no background. Simple, fast, and great for a quick upgrade.</p>
         <ul class="card-features">
           <li>No background render</li>
           <li>High resolution output</li>
@@ -342,10 +262,10 @@
       </div>
       <div class="card featured">
         <div class="card-badge">Popular</div>
-        <span class="card-icon">💎</span>
+        <span class="card-icon">HQ</span>
         <div class="card-title">High-Quality PFP</div>
         <div class="card-price">$5</div>
-        <p class="card-desc">The full package — ultra-detailed, fully rendered with premium effects and a unique scene.</p>
+        <p class="card-desc">The full package, ultra-detailed, fully rendered with premium effects and a unique scene.</p>
         <ul class="card-features">
           <li>Ultra-detailed render</li>
           <li>Custom scene & VFX</li>
@@ -355,7 +275,7 @@
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSds4oP1m7NOoe7Y0D9ykqPRLjW_knIzR5lKDz8z10GEh5ne-w/viewform?usp=header" class="btn-card" target="_blank">Order Now</a>
       </div>
       <div class="card">
-        <span class="card-icon">⚡</span>
+        <span class="card-icon">FX</span>
         <div class="card-title">Detailed PFP</div>
         <div class="card-price">$3</div>
         <p class="card-desc">A fully styled PFP with background, effects, and custom details that make you pop.</p>
@@ -373,28 +293,22 @@
 
 <hr class="glow-divider"/>
 
-<!-- SHOWCASE -->
 <section id="showcase">
   <div class="showcase-inner">
     <div class="section-header">
       <div class="section-label">// Showcase</div>
       <h2 class="section-title">Profile Pictures</h2>
-      <p class="section-sub">Hand-crafted Gorilla Tag PFPs — every single one made by me.</p>
+      <p class="section-sub">Hand-crafted Gorilla Tag PFPs, every single one made by me.</p>
     </div>
     <div class="gallery-grid" style="margin-bottom:4rem;">
-<div class="gallery-item">
-  <img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/M1dna1.png" alt="M1dna PFP"/>
-  <div class="gallery-overlay">
-    <span>Made for M1dna (AAC Owner)</span>
-  </div>
-</div>
-
+      <div class="gallery-item"><img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/M1dna1.png" alt="M1dna PFP"/><div class="gallery-overlay"><span>Made for M1dna</span></div></div>
       <div class="gallery-item"><img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/flare1.png" alt="PFP 1"/><div class="gallery-overlay"><span>PFP</span></div></div>
       <div class="gallery-item"><img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/jammyaaccc.png" alt="PFP 2"/><div class="gallery-overlay"><span>PFP</span></div></div>
       <div class="gallery-item"><img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/zommer123.png" alt="PFP 3"/><div class="gallery-overlay"><span>PFP</span></div></div>
       <div class="gallery-item"><img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/ctytty.png" alt="PFP 4"/><div class="gallery-overlay"><span>PFP</span></div></div>
       <div class="gallery-item"><img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/raeverycool.png" alt="PFP 5"/><div class="gallery-overlay"><span>PFP</span></div></div>
     </div>
+
     <div class="section-header">
       <div class="section-label">// Renders</div>
       <h2 class="section-title">Renders</h2>
@@ -412,7 +326,6 @@
 
 <hr class="glow-divider"/>
 
-<!-- MERCH -->
 <section id="merch" style="background:var(--dark2);padding:6rem 1rem;">
   <div style="max-width:1100px;margin:0 auto;">
     <div class="section-header" style="text-align:center;margin-bottom:2rem;">
@@ -426,26 +339,39 @@
     <div style="border:1px solid rgba(123,47,255,0.28);border-radius:16px;overflow:hidden;background:#07070d;box-shadow:0 0 45px rgba(123,47,255,0.16);">
       <iframe
         title="SonicCreator Glass Merch Drop"
-        src="./glass-merch/"
-        loading="lazy"
+        src="https://soniccreator10899.github.io/soniccreator.github.io/glass-merch/"
         style="display:block;width:100%;height:min(760px,82vh);border:0;background:#07070d;"
         allow="fullscreen">
       </iframe>
     </div>
 
     <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem;">
-      <a href="./glass-merch/" class="btn-primary">Open Full Screen</a>
+      <a href="https://soniccreator10899.github.io/soniccreator.github.io/glass-merch/" class="btn-primary">Open Full Screen</a>
       <a href="https://discord.gg/NsA8xva5H9" class="btn-secondary" target="_blank" rel="noreferrer">Join Discord</a>
     </div>
   </div>
 </section>
 
+<hr class="glow-divider"/>
+
+<section id="cta">
+  <div class="cta-inner">
+    <div class="section-label">// Get Started</div>
+    <h2 class="section-title">Ready to Order?</h2>
+    <p>You can order directly in my Discord DMs or soon right here on the website. Just reach out and I'll get your PFP started as soon as possible.</p>
+    <div class="cta-buttons">
+      <a href="https://discord.gg/NsA8xva5H9" class="btn-primary" target="_blank">Join Discord</a>
+      <a href="#pricing" class="btn-secondary">View Pricing</a>
+    </div>
+  </div>
+</section>
 
 <footer>
   <p>© 2026 <span>SonicCreator</span> — All Rights Reserved</p>
 </footer>
 
-<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="21241ec2-660e-4e51-9329-ea7b06058880";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="21241ec2-660e-4e51-9329-ea7b06058880";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d=d;document.getElementsByTagName("head")[0].appendChild(s);})();</script>
 
 </body>
 </html>
+```
