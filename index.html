@@ -107,9 +107,90 @@
     }
     @keyframes popIn {
       to { opacity: 1; transform: translateY(0); }
-    }
     .review-card:hover { border-color: rgba(123,47,255,0.4); box-shadow: 0 8px 30px rgba(123,47,255,0.1); transform: translateY(-3px); transition: all 0.3s; }
     @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    .merch-float {
+  position: fixed;
+  top: 5.2rem;
+  right: 1.2rem;
+  z-index: 120;
+  width: 230px;
+  border: 1px solid rgba(123,47,255,0.35);
+  border-radius: 14px;
+  background: rgba(10,10,15,0.78);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 0 30px rgba(123,47,255,0.22);
+  padding: 0.75rem;
+  text-decoration: none;
+  color: #fff;
+  overflow: hidden;
+}
+
+.merch-float::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 20%, rgba(41,121,255,0.28), transparent 45%),
+              radial-gradient(circle at 20% 80%, rgba(123,47,255,0.24), transparent 45%);
+  pointer-events: none;
+}
+
+.merch-float-inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.merch-float img {
+  width: 54px;
+  height: 54px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.merch-float-kicker {
+  font-family: 'Rajdhani', sans-serif;
+  color: var(--orange-light);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.merch-float-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 900;
+  margin-top: 0.15rem;
+}
+
+.merch-float-cta {
+  font-family: 'Rajdhani', sans-serif;
+  color: #ccc;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 0.2rem;
+}
+
+.merch-float:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 45px rgba(123,47,255,0.35);
+}
+
+@media (max-width: 760px) {
+  .merch-float {
+    top: auto;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    width: calc(100% - 1.5rem);
+  }
+}
+
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: var(--dark); }
     ::-webkit-scrollbar-thumb { background: rgba(123,47,255,0.4); border-radius: 99px; }
@@ -130,6 +211,17 @@
     <li><a href="#cta">Order</a></li>
   </ul>
 </nav>
+  <a class="merch-float" href="https://soniccreator10899.github.io/soniccreator.github.io/glass-merch/">
+  <div class="merch-float-inner">
+    <img src="https://soniccreator10899.github.io/soniccreator.github.io/glass-merch/Logo.png" alt="SonicCreator merch preview">
+    <div>
+      <div class="merch-float-kicker">Merch</div>
+      <div class="merch-float-title">Dropping Soon</div>
+      <div class="merch-float-cta">Open preview →</div>
+    </div>
+  </div>
+</a>
+
 
 <section id="hero">
   <div class="hero-bg"></div>
