@@ -158,14 +158,8 @@
     }
 
     @keyframes bubbleIn {
-      from {
-        opacity: 0;
-        transform: perspective(900px) translateY(26px) scale(0.72) rotateX(18deg);
-      }
-      to {
-        opacity: 1;
-        transform: perspective(900px) translateY(0) scale(1);
-      }
+      from { opacity: 0; transform: perspective(900px) translateY(26px) scale(0.72) rotateX(18deg); }
+      to { opacity: 1; transform: perspective(900px) translateY(0) scale(1); }
     }
 
     @keyframes bubbleFloat {
@@ -228,6 +222,7 @@
     .btn-primary {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 0.5rem;
       background: var(--grad);
       color: #fff;
@@ -241,6 +236,8 @@
       border-radius: 6px;
       transition: transform 0.2s, box-shadow 0.2s;
       box-shadow: 0 0 24px rgba(123,47,255,0.25);
+      border: 0;
+      cursor: pointer;
     }
 
     .btn-primary:hover {
@@ -426,6 +423,7 @@
     .btn-secondary {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 0.5rem;
       background: transparent;
       border: 1px solid rgba(123,47,255,0.4);
@@ -445,6 +443,31 @@
       background: rgba(123,47,255,0.1);
       border-color: var(--orange-light);
     }
+
+    .merch-form {
+      display: grid;
+      gap: 1rem;
+      max-width: 470px;
+      margin: 0 auto;
+    }
+
+    .merch-form input {
+      width: 100%;
+      padding: 0.95rem 1rem;
+      border-radius: 8px;
+      border: 1px solid rgba(123,47,255,0.35);
+      background: var(--dark3);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+    }
+
+    .merch-form input:focus {
+      border-color: var(--orange-light);
+      box-shadow: 0 0 20px rgba(123,47,255,0.22);
+    }
+
+    .merch-form input::placeholder { color: #777; }
 
     footer {
       background: var(--dark);
@@ -485,11 +508,6 @@
       transition: all 0.3s;
     }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: var(--dark); }
     ::-webkit-scrollbar-thumb { background: rgba(123,47,255,0.4); border-radius: 99px; }
@@ -509,9 +527,7 @@
         transform: translateX(50%);
       }
 
-      .hero-sub {
-        margin-bottom: 8rem;
-      }
+      .hero-sub { margin-bottom: 8rem; }
     }
   </style>
 </head>
@@ -553,7 +569,7 @@
     <div class="section-label">// Reviews</div>
     <h2 class="section-title">What Customers Say</h2>
     <p class="section-sub" style="margin:0 auto 2.5rem;">Real feedback from real customers.</p>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSe9sorXB4I7f_Y_Qes2yYAWfNRXGzg2b-URkqfgHSZ8Bya65g/viewform?usp=publish-editor" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;background:linear-gradient(135deg,#7b2fff,#2979ff);color:#fff;font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none;padding:0.85rem 2rem;border-radius:6px;margin-bottom:3rem;box-shadow:0 0 24px rgba(123,47,255,0.25);transition:transform 0.2s,box-shadow 0.2s;">Write a Review</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSe9sorXB4I7f_Y_Qes2yYAWfNRXGzg2b-URkqfgHSZ8Bya65g/viewform?usp=publish-editor" target="_blank" class="btn-primary" style="margin-bottom:3rem;">Write a Review</a>
 
     <div id="reviews-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;margin-bottom:3rem;">
       <div class="review-card" style="animation-delay:0.1s;text-align:left;">
@@ -713,29 +729,28 @@
 
 <hr class="glow-divider"/>
 
-<section id="merch" style="background:var(--dark2);padding:6rem 1rem;">
-  <div style="max-width:1100px;margin:0 auto;">
-    <div class="section-header" style="text-align:center;margin-bottom:2rem;">
-      <div class="section-label">// Merch</div>
-      <h2 class="section-title">Dropping Soon</h2>
-      <p class="section-sub" style="margin:0 auto;line-height:1.8;">
-        Move your pointer across the SonicCreator glass screen. The real logo assets, neon light, and lens react in 3D as the drop gets closer.
-      </p>
-    </div>
+<section id="merch" style="background:var(--dark2);padding:6rem 1rem;text-align:center;">
+  <div style="max-width:760px;margin:0 auto;">
+    <div class="section-label">// Merch</div>
+    <h2 class="section-title">Merch Drop</h2>
+    <p class="section-sub" style="margin:0 auto 2rem;line-height:1.8;">
+      SonicCreator merch is dropping soon. Join the preview list to get early updates, sneak peeks, and first access.
+    </p>
 
-    <div style="border:1px solid rgba(123,47,255,0.28);border-radius:16px;overflow:hidden;background:#07070d;box-shadow:0 0 45px rgba(123,47,255,0.16);">
-      <iframe
-        title="SonicCreator Glass Merch Drop"
-        src="https://soniccreator10899.github.io/soniccreator.github.io/glass-merch/"
-        style="display:block;width:100%;height:min(760px,82vh);border:0;background:#07070d;"
-        allow="fullscreen">
-      </iframe>
-    </div>
+    <form class="merch-form" action="https://formsubmit.co/gabyninja2012@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="New SonicCreator merch preview signup">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
 
-    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem;">
-      <a href="https://soniccreator10899.github.io/soniccreator.github.io/glass-merch/" class="btn-primary">Open Full Screen</a>
-      <a href="https://discord.gg/NsA8xva5H9" class="btn-secondary" target="_blank" rel="noreferrer">Join Discord</a>
-    </div>
+      <input type="text" name="name" placeholder="Your name" required>
+      <input type="email" name="email" placeholder="Your email" required>
+
+      <button type="submit" class="btn-primary">Join Preview List</button>
+    </form>
+
+    <a href="https://soniccreator10899.github.io/soniccreator.github.io/glass-merch/" class="btn-secondary" style="margin-top:1.25rem;">
+      View Preview
+    </a>
   </div>
 </section>
 
@@ -754,7 +769,7 @@
 </section>
 
 <footer>
-  <p>© 2026 <span>SonicCreator</span> — All Rights Reserved</p>
+  <p>© 2026 <span>SonicCreator</span> - All Rights Reserved</p>
 </footer>
 
 <script>
@@ -774,8 +789,8 @@
   window.$crisp=[];
   window.CRISP_WEBSITE_ID="21241ec2-660e-4e51-9329-ea7b06058880";
   (function(){
-    d=document;
-    s=d.createElement("script");
+    const d=document;
+    const s=d.createElement("script");
     s.src="https://client.crisp.chat/l.js";
     s.async=1;
     d.getElementsByTagName("head")[0].appendChild(s);
