@@ -83,6 +83,62 @@
       color: var(--orange-light);
     }
 
+    .creator-code-badge {
+      position: fixed;
+      top: 5.7rem;
+      left: 1.2rem;
+      z-index: 140;
+      width: 190px;
+      padding: 0.9rem;
+      border-radius: 14px;
+      background:
+        radial-gradient(circle at 25% 10%, rgba(0,229,255,0.16), transparent 38%),
+        rgba(10,10,15,0.76);
+      border: 1px solid rgba(0,229,255,0.25);
+      backdrop-filter: blur(16px);
+      box-shadow:
+        0 0 28px rgba(0,229,255,0.16),
+        inset 0 0 18px rgba(255,255,255,0.05);
+      text-align: center;
+    }
+
+    .creator-code-label {
+      font-family: 'Rajdhani', sans-serif;
+      color: var(--orange-light);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .creator-code-value {
+      font-family: 'Orbitron', sans-serif;
+      color: #fff75a;
+      font-size: 1.45rem;
+      font-weight: 900;
+      margin: 0.35rem 0 0.65rem;
+      text-shadow: 0 0 16px rgba(255,247,90,0.35);
+    }
+
+    .creator-code-badge button {
+      width: 100%;
+      border: 0;
+      border-radius: 6px;
+      background: linear-gradient(135deg, #38ff12, #00e5ff);
+      color: #041008;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 0.55rem;
+      cursor: pointer;
+    }
+
+    .creator-code-badge button:hover {
+      filter: brightness(1.08);
+    }
+
     .merch-orb {
       position: fixed;
       top: 5.5rem;
@@ -182,11 +238,12 @@
 
     #hero {
       min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr minmax(280px, 390px);
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 3rem;
-      padding: 7rem 7vw 4rem;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
       position: relative;
       overflow: hidden;
     }
@@ -195,16 +252,9 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 70% 60% at 45% 35%, rgba(123,47,255,0.16) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 30% at 80% 70%, rgba(41,121,255,0.11) 0%, transparent 60%);
+        radial-gradient(ellipse 70% 60% at 50% 40%, rgba(123,47,255,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 80% 70%, rgba(41,121,255,0.08) 0%, transparent 60%);
       pointer-events: none;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      text-align: left;
-      max-width: 650px;
     }
 
     .hero-pfp {
@@ -215,6 +265,8 @@
       box-shadow: 0 0 30px rgba(123,47,255,0.3);
       margin-bottom: 1.5rem;
       object-fit: cover;
+      position: relative;
+      z-index: 2;
     }
 
     .hero-tag {
@@ -232,6 +284,8 @@
       color: var(--orange-light);
       text-transform: uppercase;
       margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 2;
     }
 
     .hero-tag .dot {
@@ -257,6 +311,8 @@
       -webkit-text-fill-color: transparent;
       margin-bottom: 1rem;
       letter-spacing: 2px;
+      position: relative;
+      z-index: 2;
     }
 
     .hero-sub {
@@ -265,18 +321,13 @@
       max-width: 520px;
       line-height: 1.7;
       margin-bottom: 2.5rem;
+      position: relative;
+      z-index: 2;
     }
 
     .hero-sub span {
       color: var(--orange-light);
       font-weight: 500;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      align-items: center;
     }
 
     .btn-primary {
@@ -298,6 +349,8 @@
       box-shadow: 0 0 24px rgba(123,47,255,0.25);
       border: 0;
       cursor: pointer;
+      position: relative;
+      z-index: 2;
     }
 
     .btn-primary:hover {
@@ -327,81 +380,6 @@
     .btn-secondary:hover {
       background: rgba(123,47,255,0.1);
       border-color: var(--orange-light);
-    }
-
-    .aa-support-card {
-      position: relative;
-      z-index: 2;
-      border-radius: 18px;
-      border: 1px solid rgba(167,139,250,0.28);
-      background:
-        radial-gradient(circle at 25% 12%, rgba(0,229,255,0.16), transparent 34%),
-        radial-gradient(circle at 76% 80%, rgba(123,47,255,0.18), transparent 40%),
-        rgba(7,7,13,0.74);
-      backdrop-filter: blur(20px);
-      box-shadow:
-        0 24px 80px rgba(0,0,0,0.35),
-        0 0 45px rgba(123,47,255,0.18);
-      padding: 1rem;
-      transform-style: preserve-3d;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .aa-support-card:hover {
-      box-shadow:
-        0 32px 90px rgba(0,0,0,0.45),
-        0 0 60px rgba(0,229,255,0.2),
-        0 0 46px rgba(123,47,255,0.22);
-    }
-
-    .aa-support-card img {
-      width: 100%;
-      display: block;
-      border-radius: 13px;
-      border: 1px solid rgba(255,255,255,0.1);
-      box-shadow: 0 0 28px rgba(0,0,0,0.4);
-    }
-
-    .aa-code-panel {
-      margin-top: 1rem;
-      padding: 1rem;
-      border-radius: 12px;
-      background: rgba(3,6,17,0.82);
-      border: 1px solid rgba(0,229,255,0.18);
-      text-align: center;
-    }
-
-    .aa-code-label {
-      font-family: 'Rajdhani', sans-serif;
-      color: var(--orange-light);
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      font-size: 0.78rem;
-    }
-
-    .aa-code {
-      font-family: 'Orbitron', sans-serif;
-      font-size: clamp(1.8rem, 5vw, 3rem);
-      color: #fff75a;
-      letter-spacing: 1px;
-      margin: 0.35rem 0 0.8rem;
-      text-shadow: 0 0 22px rgba(255,247,90,0.35);
-    }
-
-    .aa-copy-btn {
-      width: 100%;
-      border: 0;
-      border-radius: 7px;
-      background: linear-gradient(135deg, #38ff12, #00e5ff);
-      color: #041008;
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 800;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      padding: 0.8rem;
-      cursor: pointer;
     }
 
     section {
@@ -692,31 +670,6 @@
       background: #07070d;
     }
 
-    .preview-form {
-      display: grid;
-      grid-template-columns: 1fr 1fr auto;
-      gap: 0.8rem;
-      padding: 1rem;
-      border-top: 1px solid rgba(123,47,255,0.18);
-      background: rgba(10,10,20,0.72);
-    }
-
-    .preview-form input {
-      min-width: 0;
-      border: 1px solid rgba(167,139,250,0.28);
-      background: rgba(3,6,17,0.8);
-      color: #fff;
-      border-radius: 7px;
-      padding: 0.9rem 1rem;
-      font-family: 'Inter', sans-serif;
-      outline: none;
-    }
-
-    .preview-form input:focus {
-      border-color: var(--cyan);
-      box-shadow: 0 0 0 3px rgba(0,229,255,0.12);
-    }
-
     #cta {
       background: var(--dark2);
       text-align: center;
@@ -763,37 +716,17 @@
       color: var(--orange-light);
     }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: var(--dark); }
     ::-webkit-scrollbar-thumb { background: rgba(123,47,255,0.4); border-radius: 99px; }
 
     @media (max-width: 980px) {
-      #hero {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-
-      .hero-content {
-        text-align: center;
-        margin: 0 auto;
-      }
-
-      .hero-actions {
-        justify-content: center;
-      }
-
-      .aa-support-card {
-        max-width: 390px;
-        margin: 0 auto;
-      }
-
       .nav-links {
         gap: 1rem;
+      }
+
+      .creator-code-badge {
+        width: 170px;
       }
     }
 
@@ -818,6 +751,13 @@
         padding: 8rem 1.2rem 4rem;
       }
 
+      .creator-code-badge {
+        position: static;
+        width: calc(100% - 2rem);
+        max-width: 250px;
+        margin: 5.5rem auto 0;
+      }
+
       .merch-orb {
         width: 112px;
         height: 112px;
@@ -837,10 +777,6 @@
 
       .merch-orb-text small {
         font-size: 0.58rem;
-      }
-
-      .preview-form {
-        grid-template-columns: 1fr;
       }
 
       section {
@@ -865,6 +801,12 @@
     </ul>
   </nav>
 
+  <div class="creator-code-badge">
+    <div class="creator-code-label">AA Creator Code</div>
+    <div class="creator-code-value">sonic108</div>
+    <button type="button" onclick="copyAACode()">Copy Code</button>
+  </div>
+
   <a class="merch-orb" href="https://soniccreator10899.github.io/soniccreator.github.io/glass-merch/" aria-label="Open SonicCreator Merch Drop">
     <span class="merch-orb-glow"></span>
     <img src="https://soniccreator10899.github.io/soniccreator.github.io/glass-merch/Logo.png" alt="SonicCreator Merch Drop">
@@ -876,29 +818,13 @@
 
   <section id="hero">
     <div class="hero-bg"></div>
-
-    <div class="hero-content">
-      <img class="hero-pfp" src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/Sonic_Creator_AAC_PFP_1.png" alt="SonicCreator PFP"/>
-      <div class="hero-tag"><span class="dot"></span>Gorilla Tag Artist + AA Creator</div>
-      <h1 class="hero-name">SonicCreator</h1>
-      <p class="hero-sub">
-        Premium <span>Gorilla Tag PFPs</span>, custom renders, and creator merch built with neon energy.
-        Support me in Gorilla Tag by using my AA Creator code when you buy Shiny Rocks.
-      </p>
-      <div class="hero-actions">
-        <a href="#pricing" class="btn-primary">View Pricing</a>
-        <a href="#creator-code" class="btn-secondary">Use Code sonic108</a>
-      </div>
-    </div>
-
-    <aside class="aa-support-card" id="creator-code">
-      <img src="https://soniccreator10899.github.io/soniccreator.github.io/gorillatag-creator-promo--vertical.jpg.webp" alt="Use creator code sonic108 in Gorilla Tag">
-      <div class="aa-code-panel">
-        <div class="aa-code-label">AA Creator Code</div>
-        <div class="aa-code">sonic108</div>
-        <button class="aa-copy-btn" type="button" onclick="copyAACode()">Copy Code</button>
-      </div>
-    </aside>
+    <img class="hero-pfp" src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/Sonic_Creator_AAC_PFP_1.png" alt="SonicCreator PFP"/>
+    <div class="hero-tag"><span class="dot"></span>Gorilla Tag Artist + AA Creator</div>
+    <h1 class="hero-name">SonicCreator</h1>
+    <p class="hero-sub">
+      Premium <span>Gorilla Tag PFPs</span> crafted with passion. Stand out in every lobby with a custom profile picture made just for you.
+    </p>
+    <a href="#pricing" class="btn-primary">View Pricing</a>
   </section>
 
   <hr class="glow-divider"/>
@@ -1082,7 +1008,7 @@
         <div class="section-label">// Merch Drop</div>
         <h2 class="section-title">Dropping Soon</h2>
         <p class="section-sub" style="margin:0 auto;line-height:1.8;">
-          Join the preview list for early updates, sneak peeks, and first access.
+          Preview the SonicCreator merch drop and join the early list on the full merch page.
         </p>
       </div>
 
@@ -1095,20 +1021,10 @@
             allow="fullscreen">
           </iframe>
         </div>
-
-        <form class="preview-form" action="https://formsubmit.co/gabyninja2012@gmail.com" method="POST">
-          <input type="hidden" name="_subject" value="New SonicCreator Merch Preview Signup">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_template" value="table">
-          <input type="text" name="name" placeholder="Your name" required>
-          <input type="email" name="email" placeholder="Your email" required>
-          <button class="btn-primary" type="submit">Join Preview List</button>
-        </form>
       </div>
 
       <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem;">
         <a href="https://soniccreator10899.github.io/soniccreator.github.io/glass-merch/" class="btn-primary">Open Full Screen</a>
-        <a href="https://discord.gg/NsA8xva5H9" class="btn-secondary" target="_blank" rel="noreferrer">Join Discord</a>
       </div>
     </div>
   </section>
@@ -1132,26 +1048,9 @@
   </footer>
 
   <script>
-    const aaCard = document.querySelector('.aa-support-card');
-
-    if (aaCard) {
-      aaCard.addEventListener('mousemove', function(event) {
-        const rect = aaCard.getBoundingClientRect();
-        const x = event.clientX - rect.left;
-        const y = event.clientY - rect.top;
-        const rotateY = ((x / rect.width) - 0.5) * 12;
-        const rotateX = ((0.5 - y / rect.height)) * 12;
-        aaCard.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-      });
-
-      aaCard.addEventListener('mouseleave', function() {
-        aaCard.style.transform = 'rotateX(0deg) rotateY(0deg)';
-      });
-    }
-
     function copyAACode() {
       navigator.clipboard.writeText('sonic108').then(function() {
-        const btn = document.querySelector('.aa-copy-btn');
+        const btn = document.querySelector('.creator-code-badge button');
         const original = btn.textContent;
         btn.textContent = 'Copied!';
         setTimeout(function() {
