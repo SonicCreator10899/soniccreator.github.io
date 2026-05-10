@@ -4,13 +4,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SonicCreator — Gorilla Tag PFPs</title>
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Orbitron:wght@700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <title>SonicCreator - Gorilla Tag PFPs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Orbitron:wght@700;900&family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet"/>
+
   <style>
     :root {
       --red: #7b2fff;
       --orange: #2979ff;
       --orange-light: #a78bfa;
+      --cyan: #00e5ff;
+      --green: #38ff12;
       --dark: #0a0a0f;
       --dark2: #0d0d1a;
       --dark3: #13132a;
@@ -21,12 +24,28 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; background: #0a0a0f; }
-    body { background: #0a0a0f; color: #f0f0f0; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+    html {
+      scroll-behavior: smooth;
+      background: #0a0a0f;
+    }
+
+    body {
+      background: #0a0a0f;
+      color: #f0f0f0;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
 
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       padding: 1.1rem 2.5rem;
       background: rgba(10,10,15,0.85);
       backdrop-filter: blur(14px);
@@ -47,7 +66,6 @@
       display: flex;
       gap: 2rem;
       list-style: none;
-      align-items: center;
     }
 
     .nav-links a {
@@ -61,16 +79,114 @@
       transition: color 0.2s;
     }
 
-    .nav-links a:hover { color: var(--orange-light); }
+    .nav-links a:hover {
+      color: var(--orange-light);
+    }
+
+    .merch-orb {
+      position: fixed;
+      top: 5.5rem;
+      right: 1.2rem;
+      z-index: 140;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      text-decoration: none;
+      color: #fff;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.28), transparent 22%),
+        radial-gradient(circle at 70% 75%, rgba(123,47,255,0.38), transparent 42%),
+        rgba(10,10,20,0.42);
+      border: 1px solid rgba(167,139,250,0.38);
+      backdrop-filter: blur(18px);
+      box-shadow:
+        0 0 34px rgba(123,47,255,0.35),
+        inset 0 0 24px rgba(255,255,255,0.08);
+      overflow: hidden;
+      animation: merchFloat 4s ease-in-out infinite;
+      transform-style: preserve-3d;
+    }
+
+    .merch-orb::before {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,229,255,0.22);
+      box-shadow: inset 0 0 24px rgba(0,229,255,0.18);
+    }
+
+    .merch-orb-glow {
+      position: absolute;
+      inset: -35%;
+      background:
+        radial-gradient(circle, rgba(0,229,255,0.26), transparent 34%),
+        radial-gradient(circle at 70% 35%, rgba(201,0,255,0.28), transparent 36%);
+      filter: blur(10px);
+      animation: merchSpin 9s linear infinite;
+    }
+
+    .merch-orb img {
+      position: relative;
+      width: 76px;
+      height: 76px;
+      object-fit: contain;
+      border-radius: 50%;
+      transform: translateZ(24px);
+      filter: drop-shadow(0 0 18px rgba(0,229,255,0.45));
+    }
+
+    .merch-orb-text {
+      position: relative;
+      display: grid;
+      gap: 0.1rem;
+      transform: translateZ(30px);
+    }
+
+    .merch-orb-text strong {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .merch-orb-text small {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.72rem;
+      color: var(--orange-light);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .merch-orb:hover {
+      transform: translateY(-6px) rotateX(8deg) rotateY(-10deg) scale(1.04);
+      box-shadow:
+        0 0 50px rgba(123,47,255,0.5),
+        0 0 24px rgba(0,229,255,0.25),
+        inset 0 0 28px rgba(255,255,255,0.12);
+    }
+
+    @keyframes merchFloat {
+      0%, 100% { translate: 0 0; }
+      50% { translate: 0 -14px; }
+    }
+
+    @keyframes merchSpin {
+      from { rotate: 0deg; }
+      to { rotate: 360deg; }
+    }
 
     #hero {
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: 1fr minmax(280px, 390px);
       align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem;
+      gap: 3rem;
+      padding: 7rem 7vw 4rem;
       position: relative;
       overflow: hidden;
     }
@@ -79,89 +195,26 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 70% 60% at 50% 40%, rgba(123,47,255,0.12) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 30% at 80% 70%, rgba(41,121,255,0.08) 0%, transparent 60%);
+        radial-gradient(ellipse 70% 60% at 45% 35%, rgba(123,47,255,0.16) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 80% 70%, rgba(41,121,255,0.11) 0%, transparent 60%);
       pointer-events: none;
     }
 
-    .aa-support-card {
-      position: absolute;
-      top: 15%;
-      right: clamp(1rem, 5vw, 5rem);
-      z-index: 6;
-      width: clamp(190px, 22vw, 285px);
-      border-radius: 18px;
-      padding: 0.75rem;
-      background:
-        linear-gradient(145deg, rgba(255,255,255,0.16), rgba(255,255,255,0.04)),
-        rgba(10,10,15,0.72);
-      border: 1px solid rgba(167,139,250,0.35);
-      box-shadow:
-        0 0 34px rgba(123,47,255,0.28),
-        0 28px 70px rgba(0,0,0,0.45);
-      backdrop-filter: blur(18px);
-      transform-style: preserve-3d;
-      transform: perspective(900px) rotateX(var(--aa-y, 0deg)) rotateY(var(--aa-x, 0deg));
-      animation: aaCardIn 1s ease forwards, aaFloat 4.8s ease-in-out infinite 1s;
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: left;
+      max-width: 650px;
     }
 
-    .aa-support-card img {
-      width: 100%;
-      display: block;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.14);
-      transform: translateZ(24px);
-    }
-
-    .aa-code-panel {
-      margin-top: 0.75rem;
-      padding: 0.85rem;
-      border-radius: 12px;
-      background: rgba(19,19,42,0.86);
-      border: 1px solid rgba(123,47,255,0.25);
-      transform: translateZ(38px);
-    }
-
-    .aa-code-label {
-      font-family: 'Rajdhani', sans-serif;
-      color: var(--orange-light);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .aa-code {
-      margin-top: 0.25rem;
-      font-family: 'Orbitron', sans-serif;
-      font-size: clamp(1.4rem, 3vw, 2rem);
-      font-weight: 900;
-      color: #fff;
-      text-shadow: 0 0 18px rgba(41,121,255,0.55);
-    }
-
-    .aa-copy-btn {
-      width: 100%;
-      margin-top: 0.75rem;
-      border: 0;
-      cursor: pointer;
-      justify-content: center;
-    }
-
-    @keyframes aaCardIn {
-      from {
-        opacity: 0;
-        transform: perspective(900px) translateY(28px) scale(0.85) rotateX(12deg);
-      }
-      to {
-        opacity: 1;
-        transform: perspective(900px) translateY(0) scale(1);
-      }
-    }
-
-    @keyframes aaFloat {
-      0%, 100% { translate: 0 0; }
-      50% { translate: 0 -14px; }
+    .hero-pfp {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 3px solid rgba(123,47,255,0.5);
+      box-shadow: 0 0 30px rgba(123,47,255,0.3);
+      margin-bottom: 1.5rem;
+      object-fit: cover;
     }
 
     .hero-tag {
@@ -209,12 +262,22 @@
     .hero-sub {
       font-size: 1.05rem;
       color: var(--muted);
-      max-width: 480px;
+      max-width: 520px;
       line-height: 1.7;
       margin-bottom: 2.5rem;
     }
 
-    .hero-sub span { color: var(--orange-light); font-weight: 500; }
+    .hero-sub span {
+      color: var(--orange-light);
+      font-weight: 500;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
 
     .btn-primary {
       display: inline-flex;
@@ -242,7 +305,108 @@
       box-shadow: 0 0 40px rgba(123,47,255,0.4);
     }
 
-    section { padding: 6rem 2rem; }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: transparent;
+      border: 1px solid rgba(123,47,255,0.4);
+      color: var(--orange-light);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.85rem 2rem;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(123,47,255,0.1);
+      border-color: var(--orange-light);
+    }
+
+    .aa-support-card {
+      position: relative;
+      z-index: 2;
+      border-radius: 18px;
+      border: 1px solid rgba(167,139,250,0.28);
+      background:
+        radial-gradient(circle at 25% 12%, rgba(0,229,255,0.16), transparent 34%),
+        radial-gradient(circle at 76% 80%, rgba(123,47,255,0.18), transparent 40%),
+        rgba(7,7,13,0.74);
+      backdrop-filter: blur(20px);
+      box-shadow:
+        0 24px 80px rgba(0,0,0,0.35),
+        0 0 45px rgba(123,47,255,0.18);
+      padding: 1rem;
+      transform-style: preserve-3d;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .aa-support-card:hover {
+      box-shadow:
+        0 32px 90px rgba(0,0,0,0.45),
+        0 0 60px rgba(0,229,255,0.2),
+        0 0 46px rgba(123,47,255,0.22);
+    }
+
+    .aa-support-card img {
+      width: 100%;
+      display: block;
+      border-radius: 13px;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 0 28px rgba(0,0,0,0.4);
+    }
+
+    .aa-code-panel {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 12px;
+      background: rgba(3,6,17,0.82);
+      border: 1px solid rgba(0,229,255,0.18);
+      text-align: center;
+    }
+
+    .aa-code-label {
+      font-family: 'Rajdhani', sans-serif;
+      color: var(--orange-light);
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+    }
+
+    .aa-code {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      color: #fff75a;
+      letter-spacing: 1px;
+      margin: 0.35rem 0 0.8rem;
+      text-shadow: 0 0 22px rgba(255,247,90,0.35);
+    }
+
+    .aa-copy-btn {
+      width: 100%;
+      border: 0;
+      border-radius: 7px;
+      background: linear-gradient(135deg, #38ff12, #00e5ff);
+      color: #041008;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.8rem;
+      cursor: pointer;
+    }
+
+    section {
+      padding: 6rem 2rem;
+    }
 
     .section-label {
       font-family: 'Rajdhani', sans-serif;
@@ -267,11 +431,53 @@
       max-width: 500px;
     }
 
-    .section-header { margin-bottom: 3.5rem; }
+    .section-header {
+      margin-bottom: 3.5rem;
+    }
 
-    #pricing { background: var(--dark2); }
-    .pricing-inner { max-width: 1100px; margin: 0 auto; }
-    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .glow-divider {
+      border: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(123,47,255,0.55), rgba(0,229,255,0.45), transparent);
+    }
+
+    .review-card {
+      background: var(--dark3);
+      border: 1px solid rgba(123,47,255,0.15);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: left;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: popIn 0.6s ease forwards;
+    }
+
+    @keyframes popIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .review-card:hover {
+      border-color: rgba(123,47,255,0.4);
+      box-shadow: 0 8px 30px rgba(123,47,255,0.1);
+      transform: translateY(-3px);
+      transition: all 0.3s;
+    }
+
+    #pricing {
+      background: var(--dark2);
+    }
+
+    .pricing-inner,
+    .showcase-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
 
     .card {
       background: var(--dark3);
@@ -301,9 +507,15 @@
       box-shadow: 0 12px 40px rgba(123,47,255,0.1);
     }
 
-    .card:hover::before { opacity: 1; }
-    .card.featured { border-color: rgba(123,47,255,0.4); box-shadow: 0 0 30px rgba(123,47,255,0.1); }
-    .card.featured::before { opacity: 1; }
+    .card:hover::before,
+    .card.featured::before {
+      opacity: 1;
+    }
+
+    .card.featured {
+      border-color: rgba(123,47,255,0.4);
+      box-shadow: 0 0 30px rgba(123,47,255,0.1);
+    }
 
     .card-badge {
       display: inline-block;
@@ -319,11 +531,41 @@
       margin-bottom: 1rem;
     }
 
-    .card-icon { font-size: 2rem; margin-bottom: 0.75rem; display: block; }
-    .card-title { font-family: 'Rajdhani', sans-serif; font-size: 1.2rem; font-weight: 700; letter-spacing: 1px; margin-bottom: 0.25rem; }
-    .card-price { font-family: 'Orbitron', sans-serif; font-size: 2rem; font-weight: 900; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem; }
-    .card-desc { color: var(--muted); font-size: 0.88rem; line-height: 1.6; margin-bottom: 1.5rem; }
-    .card-features { list-style: none; margin-bottom: 1.8rem; }
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .card-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 0.25rem;
+    }
+
+    .card-price {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+    }
+
+    .card-desc {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-features {
+      list-style: none;
+      margin-bottom: 1.8rem;
+    }
 
     .card-features li {
       font-size: 0.88rem;
@@ -360,16 +602,23 @@
       cursor: pointer;
     }
 
-    .btn-card:hover, .card.featured .btn-card {
+    .btn-card:hover,
+    .card.featured .btn-card {
       background: var(--grad);
       border-color: transparent;
       color: #fff;
       box-shadow: 0 0 20px rgba(123,47,255,0.3);
     }
 
-    #showcase { background: var(--dark); }
-    .showcase-inner { max-width: 1100px; margin: 0 auto; }
-    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.2rem; }
+    #showcase {
+      background: var(--dark);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.2rem;
+    }
 
     .gallery-item {
       position: relative;
@@ -387,7 +636,12 @@
       box-shadow: 0 8px 30px rgba(123,47,255,0.15);
     }
 
-    .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
 
     .gallery-overlay {
       position: absolute;
@@ -400,7 +654,9 @@
       padding: 1rem;
     }
 
-    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
 
     .gallery-overlay span {
       font-family: 'Rajdhani', sans-serif;
@@ -411,60 +667,82 @@
       color: var(--orange-light);
     }
 
-    #cta { background: var(--dark2); text-align: center; }
-    .cta-inner { max-width: 600px; margin: 0 auto; }
-    .cta-inner .section-title { margin-bottom: 1rem; }
-    .cta-inner p { color: var(--muted); margin-bottom: 2rem; line-height: 1.7; }
-    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      background: transparent;
-      border: 1px solid rgba(123,47,255,0.4);
-      color: var(--orange-light);
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      text-decoration: none;
-      padding: 0.85rem 2rem;
-      border-radius: 6px;
-      transition: all 0.2s;
+    #merch {
+      background:
+        radial-gradient(circle at 20% 20%, rgba(0,229,255,0.12), transparent 25rem),
+        radial-gradient(circle at 82% 78%, rgba(123,47,255,0.16), transparent 28rem),
+        var(--dark2);
     }
 
-    .btn-secondary:hover {
-      background: rgba(123,47,255,0.1);
-      border-color: var(--orange-light);
-    }
-
-    .merch-form {
-      display: grid;
-      gap: 1rem;
-      max-width: 470px;
+    .merch-card {
+      max-width: 1100px;
       margin: 0 auto;
+      border: 1px solid rgba(123,47,255,0.28);
+      border-radius: 18px;
+      overflow: hidden;
+      background: rgba(7,7,13,0.72);
+      box-shadow: 0 0 45px rgba(123,47,255,0.16);
     }
 
-    .merch-form input {
+    .merch-preview iframe {
+      display: block;
       width: 100%;
-      padding: 0.95rem 1rem;
-      border-radius: 8px;
-      border: 1px solid rgba(123,47,255,0.35);
-      background: var(--dark3);
+      height: min(720px, 82vh);
+      border: 0;
+      background: #07070d;
+    }
+
+    .preview-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 0.8rem;
+      padding: 1rem;
+      border-top: 1px solid rgba(123,47,255,0.18);
+      background: rgba(10,10,20,0.72);
+    }
+
+    .preview-form input {
+      min-width: 0;
+      border: 1px solid rgba(167,139,250,0.28);
+      background: rgba(3,6,17,0.8);
       color: #fff;
+      border-radius: 7px;
+      padding: 0.9rem 1rem;
       font-family: 'Inter', sans-serif;
       outline: none;
     }
 
-    .merch-form input:focus {
-      border-color: var(--orange-light);
-      box-shadow: 0 0 20px rgba(123,47,255,0.22);
+    .preview-form input:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 3px rgba(0,229,255,0.12);
     }
 
-    .merch-form input::placeholder { color: #777; }
+    #cta {
+      background: var(--dark2);
+      text-align: center;
+    }
+
+    .cta-inner {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .cta-inner .section-title {
+      margin-bottom: 1rem;
+    }
+
+    .cta-inner p {
+      color: var(--muted);
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
 
     footer {
       background: var(--dark);
@@ -481,325 +759,418 @@
       text-transform: uppercase;
     }
 
-    footer span { color: var(--orange-light); }
-
-    .review-card {
-      background: var(--dark3);
-      border: 1px solid rgba(123,47,255,0.15);
-      border-radius: 12px;
-      padding: 1.5rem;
-      text-align: left;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: popIn 0.6s ease forwards;
+    footer span {
+      color: var(--orange-light);
     }
 
-    @keyframes popIn {
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .review-card:hover {
-      border-color: rgba(123,47,255,0.4);
-      box-shadow: 0 8px 30px rgba(123,47,255,0.1);
-      transform: translateY(-3px);
-      transition: all 0.3s;
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
 
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: var(--dark); }
     ::-webkit-scrollbar-thumb { background: rgba(123,47,255,0.4); border-radius: 99px; }
 
-    @media (max-width: 900px) {
-      nav { padding: 1rem; }
-      .nav-links { gap: 0.8rem; overflow-x: auto; }
-      .nav-links a { font-size: 0.8rem; white-space: nowrap; }
+    @media (max-width: 980px) {
+      #hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-content {
+        text-align: center;
+        margin: 0 auto;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
 
       .aa-support-card {
-        position: relative;
+        max-width: 390px;
+        margin: 0 auto;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 760px) {
+      nav {
+        padding: 0.9rem 1rem;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 0.7rem 1rem;
+      }
+
+      .nav-links a {
+        font-size: 0.78rem;
+      }
+
+      #hero {
+        padding: 8rem 1.2rem 4rem;
+      }
+
+      .merch-orb {
+        width: 112px;
+        height: 112px;
         top: auto;
-        right: auto;
-        margin: 2rem auto 0;
-        width: min(300px, 86vw);
+        right: 0.9rem;
+        bottom: 1rem;
+      }
+
+      .merch-orb img {
+        width: 52px;
+        height: 52px;
+      }
+
+      .merch-orb-text strong {
+        font-size: 0.62rem;
+      }
+
+      .merch-orb-text small {
+        font-size: 0.58rem;
+      }
+
+      .preview-form {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 5rem 1rem;
       }
     }
   </style>
 </head>
+
 <body>
+  <nav>
+    <div class="nav-logo">SonicCreator</div>
+    <ul class="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#why">Mission</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#showcase">Showcase</a></li>
+      <li><a href="#merch">Merch</a></li>
+      <li><a href="#cta">Order</a></li>
+    </ul>
+  </nav>
 
-<nav>
-  <div class="nav-logo">SonicCreator</div>
-  <ul class="nav-links">
-    <li><a href="#hero">Home</a></li>
-    <li><a href="#reviews">Reviews</a></li>
-    <li><a href="#why">Mission</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#showcase">Showcase</a></li>
-    <li><a href="#merch">Merch</a></li>
-    <li><a href="#cta">Order</a></li>
-  </ul>
-</nav>
+  <a class="merch-orb" href="https://soniccreator10899.github.io/soniccreator.github.io/glass-merch/" aria-label="Open SonicCreator Merch Drop">
+    <span class="merch-orb-glow"></span>
+    <img src="https://soniccreator10899.github.io/soniccreator.github.io/glass-merch/Logo.png" alt="SonicCreator Merch Drop">
+    <span class="merch-orb-text">
+      <strong>Merch Drop</strong>
+      <small>Dropping Soon</small>
+    </span>
+  </a>
 
-<section id="hero">
-  <div class="hero-bg"></div>
+  <section id="hero">
+    <div class="hero-bg"></div>
 
-  <div class="aa-support-card">
-    <img src="https://soniccreator10899.github.io/soniccreator.github.io/gorillatag-creator-promo--vertical.jpg.webp" alt="Use creator code sonic108 in Gorilla Tag">
-    <div class="aa-code-panel">
-      <div class="aa-code-label">AA Creator Code</div>
-      <div class="aa-code">sonic108</div>
-      <button class="btn-primary aa-copy-btn" type="button" onclick="copyAACode()">Copy Code</button>
-    </div>
-  </div>
-
-  <img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/Sonic_Creator_AAC_PFP_1.png" alt="SonicCreator PFP" style="width:150px;height:150px;border-radius:50%;border:3px solid rgba(123,47,255,0.5);box-shadow:0 0 30px rgba(123,47,255,0.3);margin-bottom:1.5rem;object-fit:cover;"/>
-  <div class="hero-tag"><span class="dot"></span>Gorilla Tag Artist</div>
-  <h1 class="hero-name">SonicCreator</h1>
-  <p class="hero-sub">Premium <span>Gorilla Tag PFPs</span> crafted with passion. Stand out in every lobby with a custom profile picture made just for you.</p>
-  <a href="#pricing" class="btn-primary">🦍 View Pricing</a>
-</section>
-
-<hr class="glow-divider"/>
-
-<section id="reviews">
-  <div style="max-width:1100px;margin:0 auto;text-align:center;">
-    <div class="section-label">// Reviews</div>
-    <h2 class="section-title">What Customers Say</h2>
-    <p class="section-sub" style="margin:0 auto 2.5rem;">Real feedback from real customers.</p>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSe9sorXB4I7f_Y_Qes2yYAWfNRXGzg2b-URkqfgHSZ8Bya65g/viewform?usp=publish-editor" target="_blank" class="btn-primary" style="margin-bottom:3rem;">✍️ Write a Review</a>
-
-    <div id="reviews-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;margin-bottom:3rem;">
-      <div class="review-card" style="animation-delay:0.1s;text-align:left;">
-        <div style="color:#a78bfa;font-size:1.1rem;margin-bottom:0.5rem;">⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐</div>
-        <p style="color:#ccc;font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">"K I like the background its pretty good I like the pose and the style everything's good in general."</p>
-        <div style="font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:1px;color:#666;">— BEANIE</div>
-      </div>
-
-      <div class="review-card" style="animation-delay:0.25s;text-align:left;">
-        <div style="color:#a78bfa;font-size:1.1rem;margin-bottom:0.5rem;">⭐⭐⭐⭐⭐</div>
-        <p style="color:#ccc;font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">"I found SonicCreator and told him to make a PFP for me. After an hour or so, the masterpiece was done. I highly recommend his PFPs."</p>
-        <div style="font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:1px;color:#666;">— GamradGT</div>
-      </div>
-
-      <div class="review-card" style="animation-delay:0.4s;text-align:left;">
-        <div style="color:#a78bfa;font-size:1.1rem;margin-bottom:0.5rem;">⭐⭐⭐⭐</div>
-        <p style="color:#ccc;font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">"Solid quality. Good speed, delivery time was quick and got done pretty quick."</p>
-        <div style="font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:1px;color:#666;">— sys</div>
-      </div>
-
-      <div class="review-card" style="animation-delay:0.55s;text-align:left;">
-        <div style="color:#a78bfa;font-size:1.1rem;margin-bottom:0.5rem;">⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐</div>
-        <p style="color:#ccc;font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">"SonicCreator's PFPs are really cool. His signature background and quick time were very pleasing."</p>
-        <div style="font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:1px;color:#666;">— Kiki Fire</div>
-      </div>
-
-      <div class="review-card" style="animation-delay:0.7s;text-align:left;">
-        <div style="color:#a78bfa;font-size:1.1rem;margin-bottom:0.5rem;">⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐</div>
-        <p style="color:#ccc;font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">"SonicCreator is so good at making PFPs. He is the nicest guy to get them from."</p>
-        <div style="font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:1px;color:#666;">— Mr. Aidan</div>
+    <div class="hero-content">
+      <img class="hero-pfp" src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/Sonic_Creator_AAC_PFP_1.png" alt="SonicCreator PFP"/>
+      <div class="hero-tag"><span class="dot"></span>Gorilla Tag Artist + AA Creator</div>
+      <h1 class="hero-name">SonicCreator</h1>
+      <p class="hero-sub">
+        Premium <span>Gorilla Tag PFPs</span>, custom renders, and creator merch built with neon energy.
+        Support me in Gorilla Tag by using my AA Creator code when you buy Shiny Rocks.
+      </p>
+      <div class="hero-actions">
+        <a href="#pricing" class="btn-primary">View Pricing</a>
+        <a href="#creator-code" class="btn-secondary">Use Code sonic108</a>
       </div>
     </div>
-  </div>
-</section>
 
-<hr class="glow-divider"/>
-
-<section id="why" style="background:var(--dark2);text-align:center;">
-  <div style="max-width:800px;margin:0 auto;">
-    <div class="section-label">// The Mission</div>
-    <h2 class="section-title">🚀 Why I Built This</h2>
-    <p style="color:#bbb;line-height:1.9;font-size:1rem;margin-top:1rem;">
-      I created this website to give people a simple, clean place to browse and buy my <span style="color:#a78bfa;font-weight:600;">custom Gorilla Tag PFPs</span>. No hassle, no searching through Discord, just come here, pick what you want, and order.
-      <br/><br/>
-      But this is just the beginning. Down the road I'm planning to bring <span style="color:#a78bfa;font-weight:600;">merch, new art styles, and more</span>, all in one place. This site grows as I grow as an artist.
-    </p>
-  </div>
-</section>
-
-<hr class="glow-divider"/>
-
-<section id="about">
-  <div style="max-width:800px;margin:0 auto;text-align:center;">
-    <div class="section-label">// About Me</div>
-    <h2 class="section-title">👋 Who Am I?</h2>
-    <p style="color:#bbb;line-height:1.9;font-size:1rem;margin-top:1rem;">
-      I'm <span style="color:#a78bfa;font-weight:600;">SonicCreator</span>, a 14-year-old Gorilla Tag Blender artist and YouTuber with almost <span style="color:#a78bfa;font-weight:600;">2,000 subscribers</span>. I create custom PFPs and renders designed to stand out in-game and online.
-    </p>
-    <div style="display:flex;justify-content:center;gap:1.5rem;margin-top:2rem;flex-wrap:wrap;">
-      <img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/Muppets_cast.jpg" alt="The Muppets" style="width:120px;height:120px;object-fit:cover;border-radius:10px;border:2px solid rgba(167,139,250,0.3);"/>
-      <img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/760.jpegjeek1712913910.jpeg" alt="Gorilla Tag" style="width:120px;height:120px;object-fit:cover;border-radius:10px;border:2px solid rgba(167,139,250,0.3);"/>
-    </div>
-  </div>
-</section>
-
-<hr class="glow-divider"/>
-
-<section id="pricing">
-  <div class="pricing-inner">
-    <div class="section-header">
-      <div class="section-label">// Services</div>
-      <h2 class="section-title">Pick Your PFP</h2>
-      <p class="section-sub">Three tiers of quality, from quick renders to fully detailed masterpieces.</p>
-    </div>
-
-    <div class="cards-grid">
-      <div class="card">
-        <span class="card-icon">🎨</span>
-        <div class="card-title">Basic Render</div>
-        <div class="card-price">$1</div>
-        <p class="card-desc">A clean render with no background. Simple, fast, and great for a quick upgrade.</p>
-        <ul class="card-features">
-          <li>No background render</li>
-          <li>High resolution output</li>
-          <li>1 revision included</li>
-          <li>Fast delivery</li>
-        </ul>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSds4oP1m7NOoe7Y0D9ykqPRLjW_knIzR5lKDz8z10GEh5ne-w/viewform?usp=header" class="btn-card" target="_blank">Order Now</a>
+    <aside class="aa-support-card" id="creator-code">
+      <img src="https://soniccreator10899.github.io/soniccreator.github.io/gorillatag-creator-promo--vertical.jpg.webp" alt="Use creator code sonic108 in Gorilla Tag">
+      <div class="aa-code-panel">
+        <div class="aa-code-label">AA Creator Code</div>
+        <div class="aa-code">sonic108</div>
+        <button class="aa-copy-btn" type="button" onclick="copyAACode()">Copy Code</button>
       </div>
+    </aside>
+  </section>
 
-      <div class="card featured">
-        <div class="card-badge">Popular</div>
-        <span class="card-icon">💎</span>
-        <div class="card-title">High-Quality PFP</div>
-        <div class="card-price">$5</div>
-        <p class="card-desc">The full package, ultra-detailed, fully rendered with premium effects and a unique scene.</p>
-        <ul class="card-features">
-          <li>Ultra-detailed render</li>
-          <li>Custom scene & VFX</li>
-          <li>3 revision rounds</li>
-          <li>Premium quality output</li>
-        </ul>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSds4oP1m7NOoe7Y0D9ykqPRLjW_knIzR5lKDz8z10GEh5ne-w/viewform?usp=header" class="btn-card" target="_blank">Order Now</a>
-      </div>
+  <hr class="glow-divider"/>
 
-      <div class="card">
-        <span class="card-icon">⚡</span>
-        <div class="card-title">Detailed PFP</div>
-        <div class="card-price">$3</div>
-        <p class="card-desc">A fully styled PFP with background, effects, and custom details that make you pop.</p>
-        <ul class="card-features">
-          <li>Custom background included</li>
-          <li>Effects & lighting</li>
-          <li>2 revision rounds</li>
-          <li>Quick turnaround</li>
-        </ul>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSds4oP1m7NOoe7Y0D9ykqPRLjW_knIzR5lKDz8z10GEh5ne-w/viewform?usp=header" class="btn-card" target="_blank">Order Now</a>
+  <section id="reviews">
+    <div style="max-width:1100px;margin:0 auto;text-align:center;">
+      <div class="section-label">// Reviews</div>
+      <h2 class="section-title">🌟 What Customers Say</h2>
+      <p class="section-sub" style="margin:0 auto 2.5rem;">Real feedback from real customers.</p>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSe9sorXB4I7f_Y_Qes2yYAWfNRXGzg2b-URkqfgHSZ8Bya65g/viewform?usp=publish-editor" target="_blank" class="btn-primary" style="margin-bottom:3rem;">✍️ Write a Review</a>
+
+      <div id="reviews-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;margin-bottom:3rem;">
+        <div class="review-card" style="animation-delay:0.1s;">
+          <div style="color:#a78bfa;font-size:1.1rem;margin-bottom:0.5rem;">⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐</div>
+          <p style="color:#ccc;font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">"K I like the background its pretty good I like the pose and the style everything's good in general 👍 10/10"</p>
+          <div style="font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:1px;color:#666;">- BEANIE</div>
+        </div>
+
+        <div class="review-card" style="animation-delay:0.25s;">
+          <div style="color:#a78bfa;font-size:1.1rem;margin-bottom:0.5rem;">⭐⭐⭐⭐⭐</div>
+          <p style="color:#ccc;font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">"I've had bad pfps ALL my life, so one day I decided to go looking for one. I found SonicCreator and told him to make a pfp for me. After an hour or so, the masterpiece was done. I HIGHLY recommend to buy his pfps."</p>
+          <div style="font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:1px;color:#666;">- GamradGT</div>
+        </div>
+
+        <div class="review-card" style="animation-delay:0.4s;">
+          <div style="color:#a78bfa;font-size:1.1rem;margin-bottom:0.5rem;">⭐⭐⭐⭐</div>
+          <p style="color:#ccc;font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">"Solid, 8/10 on quality. Good speed, delivery time was quick and got done pretty quick. Could get a better rig though. Other than that, 4.3/5."</p>
+          <div style="font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:1px;color:#666;">- sys</div>
+        </div>
+
+        <div class="review-card" style="animation-delay:0.55s;">
+          <div style="color:#a78bfa;font-size:1.1rem;margin-bottom:0.5rem;">⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐</div>
+          <p style="color:#ccc;font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">"Sonics PFPs are really cool. His signature background and the quick time he took to make the PFP was very pleasing. I would rate his art 10/10."</p>
+          <div style="font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:1px;color:#666;">- Kiki Fire</div>
+        </div>
+
+        <div class="review-card" style="animation-delay:0.7s;">
+          <div style="color:#a78bfa;font-size:1.1rem;margin-bottom:0.5rem;">⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐</div>
+          <p style="color:#ccc;font-size:0.9rem;line-height:1.7;margin-bottom:1rem;">"Dude SonicCreator is so good at making PFPs. He is the nicest guy to get them from. I recommend him a lot for being an AA. If you want a PFP order one, he's got you!"</p>
+          <div style="font-family:'Rajdhani',sans-serif;font-size:0.8rem;letter-spacing:1px;color:#666;">- Mr. Aidan</div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<hr class="glow-divider"/>
+  <hr class="glow-divider"/>
 
-<section id="showcase">
-  <div class="showcase-inner">
-    <div class="section-header">
-      <div class="section-label">// Showcase</div>
-      <h2 class="section-title">Profile Pictures</h2>
-      <p class="section-sub">Hand-crafted Gorilla Tag PFPs, every single one made by me.</p>
+  <section id="why" style="background:var(--dark2);text-align:center;">
+    <div style="max-width:800px;margin:0 auto;">
+      <div class="section-label">// The Mission</div>
+      <h2 class="section-title">🚀 Why I Built This</h2>
+      <p style="color:#bbb;line-height:1.9;font-size:1rem;margin-top:1rem;">
+        I created this website to give people a simple, clean place to browse and buy my
+        <span style="color:#a78bfa;font-weight:600;">custom Gorilla Tag PFPs</span>.
+        No hassle, no searching through Discord - just come here, pick what you want, and order.
+        <br/><br/>
+        But this is just the beginning. Down the road I'm bringing
+        <span style="color:#a78bfa;font-weight:600;">merch, new art styles, and more</span>.
+      </p>
     </div>
+  </section>
 
-    <div class="gallery-grid" style="margin-bottom:4rem;">
-      <div class="gallery-item"><img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/M1dna1.png" alt="M1dna PFP"/><div class="gallery-overlay"><span>Made for M1dna</span></div></div>
-      <div class="gallery-item"><img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/flare1.png" alt="PFP 1"/><div class="gallery-overlay"><span>PFP</span></div></div>
-      <div class="gallery-item"><img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/jammyaaccc.png" alt="PFP 2"/><div class="gallery-overlay"><span>PFP</span></div></div>
-      <div class="gallery-item"><img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/zommer123.png" alt="PFP 3"/><div class="gallery-overlay"><span>PFP</span></div></div>
-      <div class="gallery-item"><img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/ctytty.png" alt="PFP 4"/><div class="gallery-overlay"><span>PFP</span></div></div>
-      <div class="gallery-item"><img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/raeverycool.png" alt="PFP 5"/><div class="gallery-overlay"><span>PFP</span></div></div>
+  <hr class="glow-divider"/>
+
+  <section id="about">
+    <div style="max-width:800px;margin:0 auto;text-align:center;">
+      <div class="section-label">// About Me</div>
+      <h2 class="section-title">👋 Who Am I?</h2>
+      <p style="color:#bbb;line-height:1.9;font-size:1rem;margin-top:1rem;">
+        I'm <span style="color:#a78bfa;font-weight:600;">SonicCreator</span>, a 14-year-old Gorilla Tag Blender artist and YouTuber with almost
+        <span style="color:#a78bfa;font-weight:600;">2,000 subscribers</span>. I create custom PFPs and renders designed to stand out in-game and online.
+        I'm proud to be an <span style="color:#a78bfa;font-weight:600;">AA Creator</span>.
+        <br/><br/>
+        Outside of art, I've been a fan of <span style="color:#a78bfa;font-weight:600;">Jim Henson and the Muppets</span> for most of my life, and I've been playing
+        <span style="color:#a78bfa;font-weight:600;">tennis</span> for about 2 years.
+      </p>
+      <div style="display:flex;justify-content:center;gap:1.5rem;margin-top:2rem;flex-wrap:wrap;">
+        <img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/Muppets_cast.jpg" alt="The Muppets" style="width:120px;height:120px;object-fit:cover;border-radius:10px;border:2px solid rgba(167,139,250,0.3);"/>
+        <img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/760.jpegjeek1712913910.jpeg" alt="Gorilla Tag" style="width:120px;height:120px;object-fit:cover;border-radius:10px;border:2px solid rgba(167,139,250,0.3);"/>
+      </div>
     </div>
+  </section>
 
-    <div class="section-header">
-      <div class="section-label">// Renders</div>
-      <h2 class="section-title">Renders</h2>
-      <p class="section-sub">Clean renders crafted with detail and style.</p>
+  <hr class="glow-divider"/>
+
+  <section id="pricing">
+    <div class="pricing-inner">
+      <div class="section-header">
+        <div class="section-label">// Services</div>
+        <h2 class="section-title">Pick Your PFP</h2>
+        <p class="section-sub">Three tiers of quality - from quick renders to fully detailed masterpieces.</p>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card">
+          <span class="card-icon">🎨</span>
+          <div class="card-title">Basic Render</div>
+          <div class="card-price">$1</div>
+          <p class="card-desc">A clean render with no background - simple, fast, and great for a quick upgrade.</p>
+          <ul class="card-features">
+            <li>No background render</li>
+            <li>High resolution output</li>
+            <li>1 revision included</li>
+            <li>Fast delivery</li>
+          </ul>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSds4oP1m7NOoe7Y0D9ykqPRLjW_knIzR5lKDz8z10GEh5ne-w/viewform?usp=header" class="btn-card" target="_blank">Order Now</a>
+        </div>
+
+        <div class="card featured">
+          <div class="card-badge">Popular</div>
+          <span class="card-icon">💎</span>
+          <div class="card-title">High-Quality PFP</div>
+          <div class="card-price">$5</div>
+          <p class="card-desc">The full package - ultra-detailed, fully rendered with premium effects and a unique scene.</p>
+          <ul class="card-features">
+            <li>Ultra-detailed render</li>
+            <li>Custom scene and VFX</li>
+            <li>3 revision rounds</li>
+            <li>Premium quality output</li>
+          </ul>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSds4oP1m7NOoe7Y0D9ykqPRLjW_knIzR5lKDz8z10GEh5ne-w/viewform?usp=header" class="btn-card" target="_blank">Order Now</a>
+        </div>
+
+        <div class="card">
+          <span class="card-icon">⚡</span>
+          <div class="card-title">Detailed PFP</div>
+          <div class="card-price">$3</div>
+          <p class="card-desc">A fully styled PFP with background, effects, and custom details that make you pop.</p>
+          <ul class="card-features">
+            <li>Custom background included</li>
+            <li>Effects and lighting</li>
+            <li>2 revision rounds</li>
+            <li>Quick turnaround</li>
+          </ul>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSds4oP1m7NOoe7Y0D9ykqPRLjW_knIzR5lKDz8z10GEh5ne-w/viewform?usp=header" class="btn-card" target="_blank">Order Now</a>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="gallery-grid">
-      <div class="gallery-item"><img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/RESRENDER.png" alt="Render 1"/><div class="gallery-overlay"><span>Render</span></div></div>
-      <div class="gallery-item"><img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/Untitled%20(2).png" alt="Render 2"/><div class="gallery-overlay"><span>Render</span></div></div>
-      <div class="gallery-item"><img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/Untitled%20(4).png" alt="Render 3"/><div class="gallery-overlay"><span>Render</span></div></div>
-      <div class="gallery-item"><img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/whwhwh.png" alt="Render 4"/><div class="gallery-overlay"><span>Render</span></div></div>
-      <div class="gallery-item"><img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/zoomer.png" alt="Render 5"/><div class="gallery-overlay"><span>Render</span></div></div>
+  <hr class="glow-divider"/>
+
+  <section id="showcase">
+    <div class="showcase-inner">
+      <div class="section-header">
+        <div class="section-label">// Showcase</div>
+        <h2 class="section-title">Profile Pictures</h2>
+        <p class="section-sub">Hand-crafted Gorilla Tag PFPs - every single one made by me.</p>
+      </div>
+
+      <div class="gallery-grid" style="margin-bottom:4rem;">
+        <div class="gallery-item"><img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/M1dna1.png" alt="M1dna PFP"/><div class="gallery-overlay"><span>Made for M1dna</span></div></div>
+        <div class="gallery-item"><img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/flare1.png" alt="PFP 1"/><div class="gallery-overlay"><span>PFP</span></div></div>
+        <div class="gallery-item"><img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/jammyaaccc.png" alt="PFP 2"/><div class="gallery-overlay"><span>PFP</span></div></div>
+        <div class="gallery-item"><img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/zommer123.png" alt="PFP 3"/><div class="gallery-overlay"><span>PFP</span></div></div>
+        <div class="gallery-item"><img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/ctytty.png" alt="PFP 4"/><div class="gallery-overlay"><span>PFP</span></div></div>
+        <div class="gallery-item"><img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/raeverycool.png" alt="PFP 5"/><div class="gallery-overlay"><span>PFP</span></div></div>
+      </div>
+
+      <div class="section-header">
+        <div class="section-label">// Renders</div>
+        <h2 class="section-title">Renders</h2>
+        <p class="section-sub">Clean renders crafted with detail and style.</p>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item"><img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/RESRENDER.png" alt="Render 1"/><div class="gallery-overlay"><span>Render</span></div></div>
+        <div class="gallery-item"><img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/Untitled%20(2).png" alt="Render 2"/><div class="gallery-overlay"><span>Render</span></div></div>
+        <div class="gallery-item"><img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/Untitled%20(4).png" alt="Render 3"/><div class="gallery-overlay"><span>Render</span></div></div>
+        <div class="gallery-item"><img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/whwhwh.png" alt="Render 4"/><div class="gallery-overlay"><span>Render</span></div></div>
+        <div class="gallery-item"><img src="https://raw.githubusercontent.com/SonicCreator10899/soniccreator.github.io/main/zoomer.png" alt="Render 5"/><div class="gallery-overlay"><span>Render</span></div></div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<hr class="glow-divider"/>
+  <hr class="glow-divider"/>
 
-<section id="merch" style="background:var(--dark2);padding:6rem 1rem;text-align:center;">
-  <div style="max-width:760px;margin:0 auto;">
-    <div class="section-label">// Merch</div>
-    <h2 class="section-title">Merch Drop</h2>
-    <p class="section-sub" style="margin:0 auto 2rem;line-height:1.8;">
-      SonicCreator merch is dropping soon. Join the preview list to get early updates, sneak peeks, and first access.
-    </p>
+  <section id="merch">
+    <div style="max-width:1100px;margin:0 auto;text-align:center;">
+      <div class="section-header" style="margin-bottom:2rem;">
+        <div class="section-label">// Merch Drop</div>
+        <h2 class="section-title">Dropping Soon</h2>
+        <p class="section-sub" style="margin:0 auto;line-height:1.8;">
+          Join the preview list for early updates, sneak peeks, and first access.
+        </p>
+      </div>
 
-    <form class="merch-form" action="https://formsubmit.co/gabyninja2012@gmail.com" method="POST">
-      <input type="hidden" name="_subject" value="New SonicCreator merch preview signup">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_template" value="table">
-      <input type="text" name="name" placeholder="Your name" required>
-      <input type="email" name="email" placeholder="Your email" required>
-      <button type="submit" class="btn-primary">Join Preview List</button>
-    </form>
+      <div class="merch-card">
+        <div class="merch-preview">
+          <iframe
+            title="SonicCreator Glass Merch Drop"
+            src="https://soniccreator10899.github.io/soniccreator.github.io/glass-merch/"
+            loading="lazy"
+            allow="fullscreen">
+          </iframe>
+        </div>
 
-    <a href="https://soniccreator10899.github.io/soniccreator.github.io/glass-merch/" class="btn-secondary" style="margin-top:1.25rem;">
-      View Preview
-    </a>
-  </div>
-</section>
+        <form class="preview-form" action="https://formsubmit.co/gabyninja2012@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="New SonicCreator Merch Preview Signup">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <input type="text" name="name" placeholder="Your name" required>
+          <input type="email" name="email" placeholder="Your email" required>
+          <button class="btn-primary" type="submit">Join Preview List</button>
+        </form>
+      </div>
 
-<hr class="glow-divider"/>
-
-<section id="cta">
-  <div class="cta-inner">
-    <div class="section-label">// Get Started</div>
-    <h2 class="section-title">Ready to Order?</h2>
-    <p>You can order directly in my Discord DMs or soon right here on the website. Just reach out and I'll get your PFP started as soon as possible.</p>
-    <div class="cta-buttons">
-      <a href="https://discord.gg/NsA8xva5H9" class="btn-primary" target="_blank">Join Discord</a>
-      <a href="#pricing" class="btn-secondary">View Pricing</a>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem;">
+        <a href="https://soniccreator10899.github.io/soniccreator.github.io/glass-merch/" class="btn-primary">Open Full Screen</a>
+        <a href="https://discord.gg/NsA8xva5H9" class="btn-secondary" target="_blank" rel="noreferrer">Join Discord</a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer>
-  <p>© 2026 <span>SonicCreator</span> - All Rights Reserved</p>
-</footer>
+  <hr class="glow-divider"/>
 
-<script>
-  const aaCard = document.querySelector('.aa-support-card');
+  <section id="cta">
+    <div class="cta-inner">
+      <div class="section-label">// Get Started</div>
+      <h2 class="section-title">Ready to Order?</h2>
+      <p>You can order directly in my Discord DMs or through the order form. Just reach out and I'll get your PFP started as soon as possible!</p>
+      <div class="cta-buttons">
+        <a href="https://discord.gg/NsA8xva5H9" class="btn-primary" target="_blank">Join Discord</a>
+        <a href="#pricing" class="btn-secondary">View Pricing</a>
+      </div>
+    </div>
+  </section>
 
-  if (aaCard) {
-    window.addEventListener('pointermove', (event) => {
-      const x = (event.clientX / window.innerWidth - 0.5) * 14;
-      const y = (event.clientY / window.innerHeight - 0.5) * -14;
-      aaCard.style.setProperty('--aa-x', `${x}deg`);
-      aaCard.style.setProperty('--aa-y', `${y}deg`);
-    });
-  }
+  <footer>
+    <p>© 2026 <span>SonicCreator</span> - All Rights Reserved</p>
+  </footer>
 
-  function copyAACode() {
-    navigator.clipboard.writeText('sonic108');
-    const button = document.querySelector('.aa-copy-btn');
-    if (button) {
-      button.textContent = 'Copied!';
-      setTimeout(() => button.textContent = 'Copy Code', 1400);
+  <script>
+    const aaCard = document.querySelector('.aa-support-card');
+
+    if (aaCard) {
+      aaCard.addEventListener('mousemove', function(event) {
+        const rect = aaCard.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        const rotateY = ((x / rect.width) - 0.5) * 12;
+        const rotateX = ((0.5 - y / rect.height)) * 12;
+        aaCard.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+
+      aaCard.addEventListener('mouseleave', function() {
+        aaCard.style.transform = 'rotateX(0deg) rotateY(0deg)';
+      });
     }
-  }
-</script>
 
-<script type="text/javascript">
-  window.$crisp=[];
-  window.CRISP_WEBSITE_ID="21241ec2-660e-4e51-9329-ea7b06058880";
-  (function(){
-    const d=document;
-    const s=d.createElement("script");
-    s.src="https://client.crisp.chat/l.js";
-    s.async=1;
-    d.getElementsByTagName("head")[0].appendChild(s);
-  })();
-</script>
+    function copyAACode() {
+      navigator.clipboard.writeText('sonic108').then(function() {
+        const btn = document.querySelector('.aa-copy-btn');
+        const original = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(function() {
+          btn.textContent = original;
+        }, 1400);
+      });
+    }
+  </script>
 
+  <script type="text/javascript">
+    window.$crisp=[];
+    window.CRISP_WEBSITE_ID="21241ec2-660e-4e51-9329-ea7b06058880";
+    (function(){
+      d=document;
+      s=d.createElement("script");
+      s.src="https://client.crisp.chat/l.js";
+      s.async=1;
+      d.getElementsByTagName("head")[0].appendChild(s);
+    })();
+  </script>
 </body>
 </html>
