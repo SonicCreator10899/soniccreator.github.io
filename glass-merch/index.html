@@ -158,39 +158,16 @@
       margin-top: 28px;
     }
 
-    .preview-form {
+    .emailoctopus-panel {
       width: min(100%, 430px);
-      display: grid;
-      gap: 10px;
       margin-top: 22px;
-    }
-
-    .preview-form input {
-      width: 100%;
-      min-height: 46px;
-      padding: 0 14px;
-      border-radius: 8px;
-      border: 1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.065);
-      color: var(--text);
-      font-family: Inter, system-ui, sans-serif;
-      font-weight: 700;
-      outline: none;
-      backdrop-filter: blur(12px);
-    }
-
-    .preview-form input:focus {
-      border-color: rgba(0,229,255,.62);
-      box-shadow: 0 0 26px rgba(0,229,255,.18);
-    }
-
-    .preview-form input::placeholder {
-      color: rgba(245,247,255,.52);
-    }
-
-    .preview-form button {
-      border: 0;
-      cursor: pointer;
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(0,229,255,.26);
+      background: rgba(255,255,255,.055);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 0 28px rgba(0,229,255,.12);
+      overflow: hidden;
     }
 
     .btn {
@@ -475,16 +452,9 @@
           <a class="btn" href="https://discord.gg/NsA8xva5H9" target="_blank" rel="noreferrer">Join Discord</a>
         </div>
 
-        <div class="preview-form">
-  <script async src="https://eomail5.com/form/ed3b6a0e-4d6e-11f1-8c5c-03a9b8e421f4.js" data-form="ed3b6a0e-4d6e-11f1-8c5c-03a9b8e421f4"></script>
-</div>
-          <input type="hidden" name="_subject" value="New SonicCreator merch preview signup">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_template" value="table">
-          <input type="text" name="name" placeholder="Your name" required>
-          <input type="email" name="email" placeholder="Your email" required>
-          <button type="submit" class="btn primary">Join Preview List</button>
-        </form>
+        <div class="emailoctopus-panel">
+          <script async src="https://eomail5.com/form/ed3b6a0e-4d6e-11f1-8c5c-03a9b8e421f4.js" data-form="ed3b6a0e-4d6e-11f1-8c5c-03a9b8e421f4"></script>
+        </div>
       </div>
 
       <div class="glass-stage" aria-label="Interactive 3D glass merch screen">
