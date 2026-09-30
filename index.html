@@ -733,6 +733,77 @@
     ::-webkit-scrollbar-track { background: var(--dark); }
     ::-webkit-scrollbar-thumb { background: rgba(123,47,255,0.4); border-radius: 99px; }
 
+
+    /* Portfolio refinement */
+    .section-header,
+    #reviews > div > .section-header {
+      position: relative;
+    }
+
+    .section-label {
+      color: #9ca3af;
+      letter-spacing: 0.22em;
+    }
+
+    .section-title {
+      letter-spacing: -0.02em;
+    }
+
+    #reviews .section-title {
+      margin-bottom: 0.9rem;
+    }
+
+    #reviews .section-sub {
+      color: #9ca3af;
+    }
+
+    #reviews-grid {
+      align-items: stretch;
+    }
+
+    #reviews-grid .review-card {
+      position: relative;
+      background: linear-gradient(180deg, rgba(19,19,42,0.82), rgba(13,13,26,0.92));
+      border-color: rgba(255,255,255,0.08);
+      padding: 1.65rem;
+    }
+
+    #reviews-grid .review-card::before {
+      content: "“";
+      display: block;
+      height: 1.5rem;
+      margin-bottom: 0.65rem;
+      font-family: Georgia, serif;
+      font-size: 2.8rem;
+      line-height: 1;
+      color: rgba(167,139,250,0.55);
+    }
+
+    #reviews-grid .review-card > div:first-child {
+      font-size: 0.8rem !important;
+      letter-spacing: 0.08em;
+      opacity: 0.8;
+    }
+
+    #reviews-grid .review-card p {
+      font-size: 0.95rem !important;
+      line-height: 1.75 !important;
+    }
+
+    #pricing .cards-grid {
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    #pricing .card.featured {
+      border-color: rgba(167,139,250,0.28);
+      box-shadow: 0 18px 55px rgba(0,0,0,0.24);
+    }
+
+    #showcase .gallery-item {
+      border-color: rgba(255,255,255,0.08);
+    }
+
     @media (max-width: 980px) {
       nav {
         grid-template-columns: 1fr;
@@ -854,9 +925,9 @@
   <section id="reviews">
     <div style="max-width:1100px;margin:0 auto;text-align:center;">
       <div class="section-label">// Reviews</div>
-      <h2 class="section-title">🌟 What Customers Say</h2>
+      <h2 class="section-title">What People Are Saying</h2>
       <p class="section-sub" style="margin:0 auto 2.5rem;">Real feedback from real customers.</p>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSe9sorXB4I7f_Y_Qes2yYAWfNRXGzg2b-URkqfgHSZ8Bya65g/viewform?usp=publish-editor" target="_blank" class="btn-primary" style="margin-bottom:3rem;">✍️ Write a Review</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSe9sorXB4I7f_Y_Qes2yYAWfNRXGzg2b-URkqfgHSZ8Bya65g/viewform?usp=publish-editor" target="_blank" class="btn-primary" style="margin-bottom:3rem;">Write a Review</a>
 
       <div id="reviews-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;margin-bottom:3rem;">
         <div class="review-card" style="animation-delay:0.1s;">
@@ -891,7 +962,7 @@
   <section id="why" style="background:var(--dark2);text-align:center;">
     <div style="max-width:800px;margin:0 auto;">
       <div class="section-label">// The Mission</div>
-      <h2 class="section-title">🚀 Why I Built This</h2>
+      <h2 class="section-title">Why I Built This</h2>
       <p style="color:#bbb;line-height:1.9;font-size:1rem;margin-top:1rem;">
         I created this website to give people a simple, clean place to browse and buy my
         <span style="color:#a78bfa;font-weight:600;">custom Gorilla Tag PFPs</span>.
@@ -908,7 +979,7 @@
   <section id="about">
     <div style="max-width:800px;margin:0 auto;text-align:center;">
       <div class="section-label">// About Me</div>
-      <h2 class="section-title">👋 Who Am I?</h2>
+      <h2 class="section-title">About SonicCreator</h2>
       <p style="color:#bbb;line-height:1.9;font-size:1rem;margin-top:1rem;">
         I'm <span style="color:#a78bfa;font-weight:600;">SonicCreator</span>, a 14-year-old Gorilla Tag Blender artist and YouTuber with almost
         <span style="color:#a78bfa;font-weight:600;">2,000 subscribers</span>. I create custom PFPs and renders designed to stand out in-game and online.
@@ -931,13 +1002,12 @@
       <div class="section-header">
         <div class="section-label">// Services</div>
         <h2 class="section-title">Pick Your PFP</h2>
-        <p class="section-sub">Three tiers of quality - from quick renders to fully detailed masterpieces.</p>
+        <p class="section-sub">Custom Gorilla Tag PFPs made just for you with detailed renders, effects, and backgrounds.</p>
       </div>
 
       <div class="cards-grid" style="max-width:520px;margin:0 auto;">
         <div class="card featured">
           <div class="card-badge">PFP</div>
-          <span class="card-icon">💎</span>
           <div class="card-title">High-Quality PFP</div>
           <div class="card-price">$5</div>
           <p class="card-desc">A fully styled Gorilla Tag PFP with a custom background, effects, and detailed rendering.</p>
